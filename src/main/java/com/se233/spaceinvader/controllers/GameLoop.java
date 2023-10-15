@@ -5,24 +5,37 @@ import com.se233.spaceinvader.enums.BulletType;
 import com.se233.spaceinvader.views.elements.Bullet;
 import com.se233.spaceinvader.models.Key;
 import com.se233.spaceinvader.views.GamePane;
+import com.se233.spaceinvader.models.EnemyShip;
 import javafx.application.Platform;
 import javafx.scene.input.KeyCode;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.List;
+import java.util.Random;
 
 public class GameLoop implements Runnable {
     private final Logger logManager = LogManager.getLogger(GameLoop.class);
     private GamePane gamePane;
     private final int fps = 60;
     private long lastShootTime;
+    private long lastEnemyShootTime;
+    private boolean running = true;
 
     public GameLoop(GamePane gamePane) {
         this.gamePane = gamePane;
         this.lastShootTime = System.currentTimeMillis();
+        this.lastEnemyShootTime = System.currentTimeMillis();
+    }
+
+    public void stop() {
+        running = false;
     }
 
     public void update() {
-        this.detectKey();
+        if (!gamePane.isGameOver()) {
+            this.detectKey();
+        }
     }
 
     private void detectKey() {
@@ -37,6 +50,27 @@ public class GameLoop implements Runnable {
         if (key.isPressed(KeyCode.SPACE)) {
             shootBullet();
         }
+        if (System.currentTimeMillis() - lastEnemyShootTime > 1000) {
+            this.shootEnemyBullet();
+        }
+    }
+
+    private void shootEnemyBullet() {
+
+        this.lastEnemyShootTime = System.currentTimeMillis();
+        if (Math.random() <= 0.5) {
+            gamePane.getEnemyShipManager().getEnemyShips().stream().max(EnemyShip::compareTo).ifPresent(enemyShip -> {
+                double maxY = enemyShip.getTranslateY();
+                List<EnemyShip> lowestShips = gamePane.getEnemyShipManager().getEnemyShips().stream().filter(ship -> ship.getTranslateY() >= maxY).toList();
+                int enemyShipIndex = new Random().nextInt(lowestShips.size());
+                EnemyShip randomShip = lowestShips.get(enemyShipIndex);
+
+                Bullet bullet = new Bullet((int) (randomShip.getTranslateX() + (randomShip.getWidth() / 2)), (int) (randomShip.getTranslateY() + 50), BulletType.ENEMY);
+                Platform.runLater(() -> gamePane.getChildren().add(bullet));
+            });
+        }
+
+
     }
 
     private void shootBullet() {
@@ -45,14 +79,13 @@ public class GameLoop implements Runnable {
             this.lastShootTime = System.currentTimeMillis();
             Bullet bullet = new Bullet(gamePane.getPlayer().getPosition() + (GamePane.PLAYER_WIDTH / 2), BulletType.PLAYER);
             Platform.runLater(() -> gamePane.getChildren().add(bullet));
-            logManager.debug("Player shoot, position: " + gamePane.getPlayer().getPosition());
+            logManager.info("Player shoot, position: " + gamePane.getPlayer().getPosition());
         }
     }
 
     @Override
     public void run() {
-
-        while (true) {
+        while (running) {
             this.update();
             try {
                 float delay = 1000f / fps;
@@ -61,7 +94,5 @@ public class GameLoop implements Runnable {
                 e.printStackTrace();
             }
         }
-
-
     }
 }

@@ -15,8 +15,8 @@ public class Score extends Text {
         this.setY(35);
     }
 
-    public void increaseScore() {
-        score++;
-        this.setText("Score: " + score);
+    public void increaseScoreBy(int score) {
+        this.score+= score;
+        this.setText("Score: " + String.format("%05d", this.score));
     }
 }

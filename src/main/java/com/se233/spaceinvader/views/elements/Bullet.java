@@ -14,7 +14,14 @@ public class Bullet extends Rectangle {
     public Bullet(int x, BulletType type) {
         super(2, 20, type == BulletType.PLAYER ? Color.WHITE : Color.RED);
         this.setTranslateX(x);
-        this.setTranslateY(GamePane.GROUND - GamePane.PLAYER_WIDTH - 20);
+        this.setTranslateY(GamePane.GROUND - GamePane.PLAYER_WIDTH - 10);
+        this.type = type;
+    }
+
+    public Bullet(int x, int y, BulletType type) {
+        super(2, 20, type == BulletType.PLAYER ? Color.WHITE : Color.RED);
+        this.setTranslateX(x);
+        this.setTranslateY(y);
         this.type = type;
     }
 

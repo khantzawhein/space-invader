@@ -1,4 +1,4 @@
-package com.se233.spaceinvader.views.elements;
+package com.se233.spaceinvader.models;
 
 import com.se233.spaceinvader.Launcher;
 import com.se233.spaceinvader.views.GamePane;
@@ -9,8 +9,8 @@ import javafx.scene.layout.Pane;
 public class PlayerShip extends Pane {
     private int position;
     public static final int SPEED = 3;
-
-    private int lives = 3;
+    private boolean isDead = false;
+    private boolean isReviving = false;
 
     public PlayerShip(int position) {
         super();
@@ -27,6 +27,41 @@ public class PlayerShip extends Pane {
 
     public void update() {
         this.setTranslateX(position);
+    }
+
+    public void hit() {
+        Launcher.getGamePane().getLives().decrementLive();
+        if (Launcher.getGamePane().getLives().count() == 0) {
+            isDead = true;
+        }
+        else {
+            this.isReviving = true;
+            // Blink the player three times
+            for (int i = 0; i < 3; i++) {
+                try {
+                    this.setVisible(false);
+                    Thread.sleep(200);
+                    this.setVisible(true);
+                    Thread.sleep(200);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            this.isReviving = false;
+        }
+
+    }
+
+    public void setAsDead() {
+        isDead = true;
+    }
+
+    public boolean isDead() {
+        return isDead;
+    }
+
+    public boolean isReviving() {
+        return isReviving;
     }
 
     public void moveLeft() {
@@ -49,11 +84,4 @@ public class PlayerShip extends Pane {
         this.position = position;
     }
 
-    public int getLives() {
-        return lives;
-    }
-
-    public void died() {
-        lives--;
-    }
 }

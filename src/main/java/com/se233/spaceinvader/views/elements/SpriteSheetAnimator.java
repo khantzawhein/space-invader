@@ -20,7 +20,6 @@ public class SpriteSheetAnimator extends ImageView {
         this.setImage(new Image(Launcher.class.getResourceAsStream("assets/sprites/invaders-sheet.png")));
         this.count = numColumns;
         this.x = this.initialX = WIDTH * (startColumn - 1);
-        logger.debug("x:" + x);
         this.y = HEIGHT * (startRow - 1);
         this.currentIndex = 0;
         this.setFitHeight(imgSize);
@@ -40,7 +39,6 @@ public class SpriteSheetAnimator extends ImageView {
     }
 
     public void tick() {
-        logger.debug("x:" + x + " y:" + y);
         if (this.currentIndex == this.count - 1) {
             this.currentIndex = 0;
             this.x = this.initialX;

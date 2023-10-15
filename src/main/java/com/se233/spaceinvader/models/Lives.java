@@ -17,6 +17,10 @@ public class Lives extends Text {
 
     public void decrementLive() {
         lives--;
-        this.setText("Score: " + lives);
+        this.setText("Lives: " + lives);
+    }
+
+    public int count() {
+        return lives;
     }
 }
