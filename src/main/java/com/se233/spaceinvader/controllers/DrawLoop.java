@@ -5,6 +5,7 @@ import com.se233.spaceinvader.enums.EnemyLevel;
 import com.se233.spaceinvader.views.elements.Bullet;
 import com.se233.spaceinvader.views.GamePane;
 import com.se233.spaceinvader.models.EnemyShip;
+import com.se233.spaceinvader.views.elements.ResultText;
 import javafx.application.Platform;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -24,6 +25,10 @@ public class DrawLoop implements Runnable {
         gamePane.getPlayer().update();
         updateBullets();
         checkCollisions();
+        if (gamePane.isGameOver()) {
+            setResultText();
+        }
+
     }
 
     private void checkCollisions() {
@@ -68,6 +73,16 @@ public class DrawLoop implements Runnable {
                 }
             }
         }
+    }
+
+    private void setResultText() {
+        Platform.runLater(() -> {
+            if (gamePane.getEnemyShipManager().getEnemyShips().isEmpty() && !gamePane.getPlayer().isDead()) {
+                gamePane.getChildren().add(ResultText.win());
+            } else if (gamePane.getPlayer().isDead()) {
+                gamePane.getChildren().add(ResultText.gameOver());
+            }
+        });
     }
 
     public void stop() {

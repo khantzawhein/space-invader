@@ -6,6 +6,7 @@ import com.se233.spaceinvader.models.Score;
 import com.se233.spaceinvader.views.elements.Bullet;
 import com.se233.spaceinvader.views.elements.DeadLine;
 import com.se233.spaceinvader.models.PlayerShip;
+import com.se233.spaceinvader.views.elements.ResultText;
 import javafx.scene.Node;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
@@ -34,8 +35,6 @@ public class GamePane extends Pane {
         this.lives = new Lives();
         this.deadLine = new DeadLine();
         this.getChildren().addAll(player, score, lives, deadLine);
-
-
         enemyShipManager = new EnemyShipManager(this);
         enemyShipManager.generateEnemyShips();
     }

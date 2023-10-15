@@ -5,25 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e4e9b65-43d5-44ec-919e-af41fa8179d8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/controllers/EnemyShipDrawLoop.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/enums/EnemyLevel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/EnemyShip.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/EnemyShipManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/views/elements/DeadLine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/views/elements/ResultText.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/Launcher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/controllers/DrawLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/controllers/DrawLoop.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/controllers/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/controllers/GameLoop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/Lives.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/Lives.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/Score.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/Score.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/views/GamePane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/views/GamePane.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/views/elements/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/views/elements/Bullet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/views/elements/EnemyShip.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/views/elements/PlayerShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/PlayerShip.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/views/elements/SpriteSheetAnimator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/views/elements/SpriteSheetAnimator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/log4j2.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/log4j2.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +82,7 @@
       <updated>1697292033637</updated>
       <workItem from="1697292034881" duration="4784000" />
       <workItem from="1697301937797" duration="39545000" />
-      <workItem from="1697388829236" duration="2791000" />
+      <workItem from="1697388829236" duration="4141000" />
     </task>
     <servers />
   </component>

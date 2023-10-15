@@ -33,7 +33,7 @@ public class GameLoop implements Runnable {
     }
 
     public void update() {
-        if (!gamePane.isGameOver()) {
+        if (!gamePane.isGameOver() && !gamePane.getPlayer().isReviving()) {
             this.detectKey();
         }
     }
