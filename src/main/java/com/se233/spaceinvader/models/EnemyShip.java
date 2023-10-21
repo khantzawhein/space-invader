@@ -1,8 +1,12 @@
 package com.se233.spaceinvader.models;
 
+import com.se233.spaceinvader.Launcher;
 import com.se233.spaceinvader.enums.EnemyLevel;
 import com.se233.spaceinvader.views.GamePane;
+import com.se233.spaceinvader.views.elements.Explosion;
 import com.se233.spaceinvader.views.elements.SpriteSheetAnimator;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,6 +18,8 @@ public class EnemyShip extends Pane implements Comparable<EnemyShip> {
     private final EnemyShipManager enemyShipManager;
     private final EnemyLevel enemyLevel;
     private static final int SPEED = 5;
+    private boolean isDead = false;
+    private int deadAnimationFrames = 15;
 
     public EnemyShip(EnemyShipManager enemyShipManager, EnemyLevel enemyLevel, double x, double y) {
         super();
@@ -33,6 +39,23 @@ public class EnemyShip extends Pane implements Comparable<EnemyShip> {
 
     public SpriteSheetAnimator getSpriteSheetAnimator() {
         return spriteSheetAnimator;
+    }
+
+    public void die() {
+        this.isDead = true;
+        this.getChildren().remove(spriteSheetAnimator);
+        this.getChildren().add(new Explosion());
+    }
+
+    public boolean countDownAndCheckShowingExplosion() {
+        if (this.deadAnimationFrames > 0 && this.isDead) {
+            this.deadAnimationFrames--;
+        }
+        return this.deadAnimationFrames > 0 && this.isDead;
+    }
+
+    public boolean isDead() {
+        return isDead;
     }
 
     public void update() {

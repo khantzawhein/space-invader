@@ -4,6 +4,8 @@ import com.se233.spaceinvader.enums.EnemyLevel;
 import com.se233.spaceinvader.views.GamePane;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -11,7 +13,7 @@ import java.util.Iterator;
 public class EnemyShipManager {
     private ObservableList<Node> paneList;
     private boolean isMovingLeft, isMovingRight, shouldMoveLeft, shouldMoveRight;
-
+    private Logger logger = LogManager.getLogger(EnemyShipManager.class);
     public final static int ORIGINAL_ENEMY_COUNT = 60;
 
     public EnemyShipManager(GamePane gamePane) {
@@ -53,12 +55,16 @@ public class EnemyShipManager {
     }
 
     public ArrayList<EnemyShip> getEnemyShips() {
-        Iterator<Node> paneListIterator  = new ArrayList<>(paneList).iterator();
         ArrayList<EnemyShip> enemyShips = new ArrayList<>();
-        while (paneListIterator.hasNext())  {
-            Node node;
-            if ((node = paneListIterator.next()) instanceof EnemyShip) {
-                enemyShips.add((EnemyShip) node);
+        for (int i = 0; i < paneList.size(); i++) {
+            try {
+                Node node = paneList.get(i);
+                if (node instanceof EnemyShip) {
+                    enemyShips.add((EnemyShip) node);
+                }
+            } catch (IndexOutOfBoundsException e) {
+                logger.warn(e.getMessage());
+                break;
             }
         }
         return enemyShips;
@@ -79,7 +85,7 @@ public class EnemyShipManager {
     }
 
     private void moveAllShipDown() {
-        for (Iterator<EnemyShip> i = getEnemyShips().iterator(); i.hasNext();) {
+        for (Iterator<EnemyShip> i = getEnemyShips().iterator(); i.hasNext(); ) {
             EnemyShip enemyShip = i.next();
             enemyShip.moveDown();
         }

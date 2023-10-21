@@ -1,0 +1,5 @@
+[ WARN] 2023-10-17 00:59:07.944 - Tue [time 8016 millisec] [Thread-6] DrawLoop run:108 - ConcurrentModificationException: null
+[ WARN] 2023-10-17 00:59:56.998 - Tue [time 57070 millisec] [Thread-5] GameLoop run:95 - ConcurrentModificationException: null
+[ WARN] 2023-10-17 01:00:38.171 - Tue [time 12300 millisec] [Thread-6] DrawLoop run:108 - ConcurrentModificationException: null
+[ WARN] 2023-10-17 01:10:46.001 - Tue [time 11815 millisec] [Thread-6] DrawLoop run:105 - ConcurrentModificationException: null
+[ WARN] 2023-10-17 01:11:11.752 - Tue [time 10634 millisec] [Thread-6] DrawLoop run:106 - ConcurrentModificationException: null

@@ -11,11 +11,12 @@ import javafx.scene.input.KeyCode;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.ConcurrentModificationException;
 import java.util.List;
 import java.util.Random;
 
 public class GameLoop implements Runnable {
-    private final Logger logManager = LogManager.getLogger(GameLoop.class);
+    private final Logger logger = LogManager.getLogger(GameLoop.class);
     private GamePane gamePane;
     private final int fps = 60;
     private long lastShootTime;
@@ -42,15 +43,15 @@ public class GameLoop implements Runnable {
         Key key = Launcher.key;
         if (key.isPressed(KeyCode.LEFT) && !key.isPressed(KeyCode.RIGHT)) {
             gamePane.getPlayer().moveLeft();
-            logManager.debug("Player move left, position: " + gamePane.getPlayer().getPosition());
+            logger.debug("Player move left, position: " + gamePane.getPlayer().getPosition());
         } else if (key.isPressed(KeyCode.RIGHT) && !key.isPressed(KeyCode.LEFT)) {
             gamePane.getPlayer().moveRight();
-            logManager.debug("Player move right, position: " + gamePane.getPlayer().getPosition());
+            logger.debug("Player move right, position: " + gamePane.getPlayer().getPosition());
         }
         if (key.isPressed(KeyCode.SPACE)) {
             shootBullet();
         }
-        if (System.currentTimeMillis() - lastEnemyShootTime > 1000) {
+        if (System.currentTimeMillis() - lastEnemyShootTime > 1500) {
             this.shootEnemyBullet();
         }
     }
@@ -58,7 +59,7 @@ public class GameLoop implements Runnable {
     private void shootEnemyBullet() {
 
         this.lastEnemyShootTime = System.currentTimeMillis();
-        if (Math.random() <= 0.5) {
+        if (Math.random() <= 0.3) {
             gamePane.getEnemyShipManager().getEnemyShips().stream().max(EnemyShip::compareTo).ifPresent(enemyShip -> {
                 double maxY = enemyShip.getTranslateY();
                 List<EnemyShip> lowestShips = gamePane.getEnemyShipManager().getEnemyShips().stream().filter(ship -> ship.getTranslateY() >= maxY).toList();
@@ -69,8 +70,6 @@ public class GameLoop implements Runnable {
                 Platform.runLater(() -> gamePane.getChildren().add(bullet));
             });
         }
-
-
     }
 
     private void shootBullet() {
@@ -79,19 +78,21 @@ public class GameLoop implements Runnable {
             this.lastShootTime = System.currentTimeMillis();
             Bullet bullet = new Bullet(gamePane.getPlayer().getPosition() + (GamePane.PLAYER_WIDTH / 2), BulletType.PLAYER);
             Platform.runLater(() -> gamePane.getChildren().add(bullet));
-            logManager.info("Player shoot, position: " + gamePane.getPlayer().getPosition());
+            logger.info("Player shoot, position: " + gamePane.getPlayer().getPosition());
         }
     }
 
     @Override
     public void run() {
         while (running) {
-            this.update();
             try {
+                this.update();
                 float delay = 1000f / fps;
                 Thread.sleep((long) delay);
             } catch (InterruptedException e) {
                 e.printStackTrace();
+            } catch (ConcurrentModificationException e) {
+                logger.warn("ConcurrentModificationException: " + e.getMessage());
             }
         }
     }

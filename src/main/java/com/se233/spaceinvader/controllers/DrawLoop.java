@@ -10,6 +10,8 @@ import javafx.application.Platform;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.ConcurrentModificationException;
+
 public class DrawLoop implements Runnable {
     private final Logger logger = LogManager.getLogger(DrawLoop.class);
     private GamePane gamePane;
@@ -25,8 +27,23 @@ public class DrawLoop implements Runnable {
         gamePane.getPlayer().update();
         updateBullets();
         checkCollisions();
+        showExplosionAndRemoveDeadEnemyShips();
         if (gamePane.isGameOver()) {
             setResultText();
+        }
+
+    }
+
+    private void showExplosionAndRemoveDeadEnemyShips() {
+        for (EnemyShip enemyShip : gamePane.getEnemyShipManager().getEnemyShips()) {
+            if (enemyShip.countDownAndCheckShowingExplosion()) {
+                continue;
+            }
+            if (enemyShip.isDead()) {
+                Platform.runLater(() -> {
+                    gamePane.getChildren().remove(enemyShip);
+                });
+            }
         }
 
     }
@@ -61,15 +78,17 @@ public class DrawLoop implements Runnable {
             }
         } else {
             for (EnemyShip enemyShip : gamePane.getEnemyShipManager().getEnemyShips()) {
-                if (bullet.getBoundsInParent().intersects(enemyShip.getBoundsInParent())) {
+                if (!enemyShip.isDead() && bullet.getBoundsInParent().intersects(enemyShip.getBoundsInParent())) {
                     logger.info("Enemy hit by bullet, position: " + bullet.getTranslateY());
                     EnemyLevel enemyLevel = enemyShip.getEnemyLevel();
                     int score = enemyLevel == EnemyLevel.FRONT ? 10 : enemyLevel == EnemyLevel.MIDDLE ? 20 : 30;
+                    gamePane.getScore().incrementScoreBy(score);
                     Platform.runLater(() -> {
                         gamePane.getChildren().remove(bullet);
-                        gamePane.getChildren().remove(enemyShip);
-                        gamePane.getScore().increaseScoreBy(score);
+                        enemyShip.die();
+                        gamePane.getScore().renderScore();
                     });
+                    break;
                 }
             }
         }
@@ -92,12 +111,14 @@ public class DrawLoop implements Runnable {
     @Override
     public void run() {
         while (running) {
-            this.update();
             try {
+                this.update();
                 float delay = 1000f / fps;
                 Thread.sleep((long) delay);
             } catch (InterruptedException e) {
                 e.printStackTrace();
+            } catch (ConcurrentModificationException e) {
+                logger.warn("ConcurrentModificationException: " + e.getMessage());
             }
         }
     }

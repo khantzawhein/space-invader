@@ -6,6 +6,8 @@ import javafx.application.Platform;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.ConcurrentModificationException;
+
 public class EnemyShipDrawLoop implements Runnable {
     private final Logger logger = LogManager.getLogger(EnemyShipDrawLoop.class);
     private final GamePane gamePane;
@@ -41,8 +43,8 @@ public class EnemyShipDrawLoop implements Runnable {
     public void run() {
         long time = System.currentTimeMillis();
         while (running && !gamePane.isGameOver()) {
-            this.update();
             try {
+                this.update();
                 float delay = 1000f / fps;
                 time = System.currentTimeMillis() - time;
                 if (time < delay) {
@@ -52,6 +54,8 @@ public class EnemyShipDrawLoop implements Runnable {
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
+            } catch (ConcurrentModificationException e) {
+                logger.warn(e.getMessage());
             }
         }
     }

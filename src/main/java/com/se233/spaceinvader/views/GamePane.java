@@ -26,6 +26,7 @@ public class GamePane extends Pane {
     private final Lives lives;
     private final EnemyShipManager enemyShipManager;
     private final Rectangle deadLine;
+
     public GamePane() {
         super();
         this.setPrefSize(WIDTH, HEIGHT);
@@ -56,12 +57,15 @@ public class GamePane extends Pane {
     }
 
     public ArrayList<Bullet> getBullets() {
-        Iterator<Node> paneListIterator  = this.getChildren().iterator();
         ArrayList<Bullet> bullets = new ArrayList<>();
-        while (paneListIterator.hasNext())  {
-            Node node;
-            if ((node = paneListIterator.next()) instanceof Bullet) {
-                bullets.add((Bullet) node);
+        for (int i = 0; i < this.getChildren().size(); i++) {
+            try {
+                Node node = this.getChildren().get(i);
+                if (node instanceof Bullet) {
+                    bullets.add((Bullet) node);
+                }
+            } catch (ArrayIndexOutOfBoundsException e) {
+                break;
             }
         }
         return bullets;
