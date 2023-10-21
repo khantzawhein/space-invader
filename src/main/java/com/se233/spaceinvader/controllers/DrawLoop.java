@@ -26,7 +26,6 @@ public class DrawLoop implements Runnable {
     private void update() {
         gamePane.getPlayer().update();
         updateBullets();
-        checkCollisions();
         showExplosionAndRemoveDeadEnemyShips();
         if (gamePane.isGameOver()) {
             setResultText();
@@ -35,7 +34,7 @@ public class DrawLoop implements Runnable {
     }
 
     private void showExplosionAndRemoveDeadEnemyShips() {
-        for (EnemyShip enemyShip : gamePane.getEnemyShipManager().getEnemyShips()) {
+        for (EnemyShip enemyShip : gamePane.getEnemyShipManager().getEnemyShips().stream().filter(EnemyShip::isDead).toArray(EnemyShip[]::new)) {
             if (enemyShip.countDownAndCheckShowingExplosion()) {
                 continue;
             }
@@ -45,16 +44,9 @@ public class DrawLoop implements Runnable {
                 });
             }
         }
-
     }
 
-    private void checkCollisions() {
-        gamePane.getEnemyShipManager().getEnemyShips().stream().forEach(enemyShip -> {
-            if (enemyShip.getBoundsInParent().intersects(gamePane.getDeadLine().getBoundsInParent())) {
-                gamePane.getPlayer().setAsDead();
-            }
-        });
-    }
+
 
 
     private void updateBullets() {

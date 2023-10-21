@@ -21,7 +21,16 @@ public class EnemyShipDrawLoop implements Runnable {
     public void update() {
         if (!gamePane.getPlayer().isReviving()) {
             updateEnemyShips();
+            checkCollisions();
         }
+    }
+
+    private void checkCollisions() {
+        gamePane.getEnemyShipManager().getEnemyShips().forEach(enemyShip -> {
+            if (enemyShip.getBoundsInParent().intersects(gamePane.getDeadLine().getBoundsInParent())) {
+                gamePane.getPlayer().setAsDead();
+            }
+        });
     }
 
     private void updateEnemyShips() {

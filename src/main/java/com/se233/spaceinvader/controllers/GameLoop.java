@@ -43,10 +43,14 @@ public class GameLoop implements Runnable {
         Key key = Launcher.key;
         if (key.isPressed(KeyCode.LEFT) && !key.isPressed(KeyCode.RIGHT)) {
             gamePane.getPlayer().moveLeft();
-            logger.debug("Player move left, position: " + gamePane.getPlayer().getPosition());
+            if (Math.random() < 0.15) {
+                logger.debug("Player move left, position: " + gamePane.getPlayer().getPosition());
+            }
         } else if (key.isPressed(KeyCode.RIGHT) && !key.isPressed(KeyCode.LEFT)) {
             gamePane.getPlayer().moveRight();
-            logger.debug("Player move right, position: " + gamePane.getPlayer().getPosition());
+            if (Math.random() < 0.15) {
+                logger.debug("Player move right, position: " + gamePane.getPlayer().getPosition());
+            }
         }
         if (key.isPressed(KeyCode.SPACE)) {
             shootBullet();
@@ -78,7 +82,7 @@ public class GameLoop implements Runnable {
             this.lastShootTime = System.currentTimeMillis();
             Bullet bullet = new Bullet(gamePane.getPlayer().getPosition() + (GamePane.PLAYER_WIDTH / 2), BulletType.PLAYER);
             Platform.runLater(() -> gamePane.getChildren().add(bullet));
-            logger.info("Player shoot, position: " + gamePane.getPlayer().getPosition());
+            logger.debug("Player shoot, position: " + gamePane.getPlayer().getPosition());
         }
     }
 

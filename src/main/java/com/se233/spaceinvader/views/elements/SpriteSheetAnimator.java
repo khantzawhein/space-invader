@@ -28,16 +28,6 @@ public class SpriteSheetAnimator extends ImageView {
         this.setViewport(new Rectangle2D(this.x, this.y, WIDTH, HEIGHT));
     }
 
-    public SpriteSheetAnimator(Image image, int startColumn, int startRow, int numColumns) {
-        this.setImage(image);
-        this.count = numColumns;
-        this.x = this.initialX = WIDTH * startColumn;
-        this.y = HEIGHT * startRow;
-        this.currentIndex = 0;
-
-        this.setViewport(new Rectangle2D(this.x, this.y, WIDTH, HEIGHT));
-    }
-
     public void tick() {
         if (this.currentIndex == this.count - 1) {
             this.currentIndex = 0;

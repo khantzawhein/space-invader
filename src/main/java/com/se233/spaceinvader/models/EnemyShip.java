@@ -67,7 +67,7 @@ public class EnemyShip extends Pane implements Comparable<EnemyShip> {
             this.setTranslateX(this.getTranslateX() + SPEED);
         }
 
-        if (this.getTranslateX() < 30) {
+        if (this.getTranslateX() < 20) {
             this.enemyShipManager.boundaryHitLeft();
         } else if (this.getTranslateX() > GamePane.WIDTH - 50) {
             this.enemyShipManager.boundaryHitRight();
