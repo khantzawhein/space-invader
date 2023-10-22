@@ -101,8 +101,9 @@ public class GameLoop implements Runnable {
     private void shootEnemyBullet() {
         if (System.currentTimeMillis() - lastEnemyShootTime > 1500) {
             this.lastEnemyShootTime = System.currentTimeMillis();
-            if (Math.random() <= 0.3) {
+            if (Math.random() <= 0.4) {
                 gamePane.getEnemyShipManager().getEnemyShips().stream().max(EnemyShip::compareTo).ifPresent(enemyShip -> {
+                    GamePane.MEDIA_MANAGER.play(MediaIdentifier.SHOOT_SOUND);
                     double maxY = enemyShip.getTranslateY();
                     List<EnemyShip> lowestShips = gamePane.getEnemyShipManager().getEnemyShips().stream().filter(ship -> ship.getTranslateY() >= maxY).toList();
                     int enemyShipIndex = new Random().nextInt(lowestShips.size());
@@ -116,10 +117,12 @@ public class GameLoop implements Runnable {
     }
 
     private void shootBossBullet() {
-        if (System.currentTimeMillis() - this.lastEnemyShootTime > 700) {
+        if (System.currentTimeMillis() - this.lastEnemyShootTime > 700
+                && gamePane.getEnemyShipManager().getBossShip().isStartAnimationDone()) {
             this.lastEnemyShootTime = System.currentTimeMillis();
 
             if (Math.random() < 0.7) {
+                GamePane.MEDIA_MANAGER.play(MediaIdentifier.SHOOT_SOUND);
                 BossShip bossShip = gamePane.getEnemyShipManager().getBossShip();
                 Bullet bullet = new Bullet((int) (bossShip.getTranslateX() + (bossShip.getWidth() / 2)), (int) (bossShip.getTranslateY() + 50), BulletType.ENEMY);
                 Platform.runLater(() -> gamePane.getChildren().add(bullet));
@@ -129,7 +132,7 @@ public class GameLoop implements Runnable {
 
     private void shootBullet() {
         // Throttle the shoot speed
-        if (System.currentTimeMillis() - lastShootTime > 500) {
+        if (System.currentTimeMillis() - lastShootTime > 700) {
             GamePane.MEDIA_MANAGER.play(MediaIdentifier.SHOOT_SOUND);
             this.lastShootTime = System.currentTimeMillis();
             Bullet bullet = new Bullet(gamePane.getPlayer().getPosition() + (GamePane.PLAYER_WIDTH / 2), BulletType.PLAYER);

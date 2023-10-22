@@ -5,9 +5,9 @@ import javafx.scene.media.Media;
 import java.io.File;
 
 public class Sound {
-    private Media media;
+    private final Media media;
     public Sound(File file) {
-        media = new Media(file.toPath().toString());
+        media = new Media(file.toURI().toString());
     }
 
     public Media getMedia() {

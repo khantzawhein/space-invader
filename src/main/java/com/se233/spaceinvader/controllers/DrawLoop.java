@@ -85,6 +85,7 @@ public class DrawLoop implements Runnable {
             if (bullet.getBoundsInParent().intersects(gamePane.getPlayer().getBoundsInParent())) {
                 Platform.runLater(() -> gamePane.getChildren().remove(bullet));
                 logger.info("Player hit by bullet, position: " + bullet.getTranslateY());
+                GamePane.MEDIA_MANAGER.play(MediaIdentifier.EXPLOSION_SOUND);
                 gamePane.getPlayer().hit();
             }
         } else {
@@ -93,10 +94,11 @@ public class DrawLoop implements Runnable {
     }
 
     private void checkEnemyBulletHit(Bullet bullet) {
-        if (gamePane.getEnemyShipManager().isBossMode()) {
+        if (gamePane.getEnemyShipManager().isBossMode() && gamePane.getEnemyShipManager().getBossShip().isStartAnimationDone()) {
             BossShip bossShip = gamePane.getEnemyShipManager().getBossShip();
             if (!bossShip.isDead() && bullet.getBoundsInParent().intersects(bossShip.getBoundsInParent())) {
                 int score = 500;
+                GamePane.MEDIA_MANAGER.play(MediaIdentifier.INVADER_KILLED);
                 gamePane.getScore().incrementScoreBy(score);
                 logger.info("Boss hit by bullet, position: " + bullet.getTranslateY());
                 Platform.runLater(() -> {

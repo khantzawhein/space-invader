@@ -28,7 +28,7 @@ public class EnemyShipDrawLoop implements Runnable {
 
     private void checkCollisions() {
         gamePane.getEnemyShipManager().getEnemyShips().forEach(enemyShip -> {
-            if (enemyShip.getTranslateY() >= gamePane.getDeadLine().getY()) {
+            if (enemyShip.getTranslateY() + enemyShip.getHeight() >= gamePane.getDeadLine().getY()) {
                 gamePane.getPlayer().setAsDead();
             }
         });

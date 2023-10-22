@@ -1,6 +1,7 @@
 package com.se233.spaceinvader.models;
 
 import com.se233.spaceinvader.Launcher;
+import com.se233.spaceinvader.enums.MediaIdentifier;
 import com.se233.spaceinvader.views.GamePane;
 import com.se233.spaceinvader.views.elements.Explosion;
 import com.se233.spaceinvader.views.elements.SpriteSheetAnimator;
@@ -17,6 +18,8 @@ public class BossShip extends Pane {
     private int hp = 3;
     private long lastExplosionTime;
     private ImageView explosion;
+    private boolean startAnimationDone = false;
+    private double currentX, currentY;
 
     public BossShip(EnemyShipManager enemyShipManager, double currentX, double currentY) {
         super();
@@ -25,23 +28,42 @@ public class BossShip extends Pane {
         imageView.setFitHeight(30);
         imageView.setFitWidth(60);
         this.setTranslateX(currentX);
-        this.setTranslateY(currentY);
+        this.setTranslateY(-60);
+        this.currentY = currentY;
+        this.currentX = currentX;
         this.getChildren().addAll(imageView);
     }
 
     public void update() {
-        if (enemyShipManager.isMovingLeft()) {
-            this.setTranslateX(this.getTranslateX() - SPEED);
-        } else if (enemyShipManager.isMovingRight()) {
-            this.setTranslateX(this.getTranslateX() + SPEED);
-        }
-        if (this.getTranslateX() < 10) {
-            this.enemyShipManager.boundaryHitLeft();
-        } else if (this.getTranslateX() > GamePane.WIDTH - 70) {
-            this.enemyShipManager.boundaryHitRight();
+        GamePane.MEDIA_MANAGER.play(MediaIdentifier.BOSS_SOUND);
+        if (startAnimationDone) {
+            if (enemyShipManager.isMovingLeft()) {
+                this.setTranslateX(this.getTranslateX() - SPEED);
+            } else if (enemyShipManager.isMovingRight()) {
+                this.setTranslateX(this.getTranslateX() + SPEED);
+            }
+            if (this.getTranslateX() < 10) {
+                this.enemyShipManager.boundaryHitLeft();
+            } else if (this.getTranslateX() > GamePane.WIDTH - 70) {
+                this.enemyShipManager.boundaryHitRight();
+            }
+        } else {
+            goDownFromSky();
         }
 
         removeExplosionAfterDuration();
+    }
+
+    public boolean isStartAnimationDone() {
+        return startAnimationDone;
+    }
+
+    private void goDownFromSky() {
+        if (this.getTranslateY() < currentY) {
+            this.setTranslateY(this.getTranslateY() + 2);
+        } else {
+            startAnimationDone = true;
+        }
     }
 
     private void removeExplosionAfterDuration() {

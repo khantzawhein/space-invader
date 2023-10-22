@@ -5,6 +5,7 @@ public enum MediaIdentifier {
     SHOOT_SOUND("shootSound"),
     INVADER_KILLED("invaderKilledSound"),
     EXPLOSION_SOUND("explosionSound"),
+    BOSS_SOUND("bossSound"),
     GAME_OVER_SOUND("gameOverSound"),
     WIN_SOUND("winSound");
 

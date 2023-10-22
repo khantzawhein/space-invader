@@ -51,7 +51,7 @@ public class EnemyShipManager {
             return;
         }
         isBossMode = true;
-        double currentX = 130;
+        double currentX = (GamePane.WIDTH / 2.0) - 30;
         double currentY = 80;
         this.bossShip = new BossShip(this, currentX, currentY);
         paneList.add(bossShip);

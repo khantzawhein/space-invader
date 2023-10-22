@@ -9,7 +9,7 @@ import javafx.scene.shape.Rectangle;
 
 public class Bullet extends Rectangle {
     private final BulletType type;
-    private final int SPEED = 5;
+    private final int SPEED = 8;
 
     public Bullet(int x, BulletType type) {
         super(2, 20, type == BulletType.PLAYER ? Color.WHITE : Color.RED);

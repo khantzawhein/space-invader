@@ -6,16 +6,19 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
+import java.util.Objects;
+
 public class PlayerShip extends Pane {
     private int position;
     public static final int SPEED = 3;
     private boolean isDead = false;
     private boolean isReviving = false;
+    private final ImageView imageView;
 
     public PlayerShip(int position) {
         super();
         this.position = position;
-        ImageView imageView = new ImageView(new Image(Launcher.class.getResourceAsStream("assets/sprites/player.png")));
+        imageView = new ImageView(new Image(Launcher.class.getResourceAsStream("assets/sprites/player-ship.png")));
         imageView.setFitHeight(GamePane.PLAYER_WIDTH);
         imageView.setFitWidth(GamePane.PLAYER_WIDTH);
 
@@ -32,7 +35,7 @@ public class PlayerShip extends Pane {
     public void hit() {
         Launcher.getGamePane().getLives().decrementLive();
         if (Launcher.getGamePane().getLives().count() == 0) {
-            isDead = true;
+            setAsDead();
         }
         else {
             this.isReviving = true;
@@ -53,6 +56,7 @@ public class PlayerShip extends Pane {
     }
 
     public void setAsDead() {
+        imageView.setImage(new Image(Objects.requireNonNull(Launcher.class.getResourceAsStream("assets/sprites/player-died.png"))));
         isDead = true;
     }
 
