@@ -5,12 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e4e9b65-43d5-44ec-919e-af41fa8179d8" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/enums/DisplayTextAnimation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/enums/MediaIdentifier.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/MediaManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/Sound.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/views/elements/DisplayText.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/views/elements/StartPage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets/sounds/invaderkilled.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets/sounds/shoot.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets/sounds/space-invader.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets/sprites/boss-ship-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets/sprites/boss-ship-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets/sprites/boss-ship.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets/sprites/logo.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game.log" beforeDir="false" afterPath="$PROJECT_DIR$/game.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/Launcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/Launcher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/controllers/DrawLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/controllers/DrawLoop.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/controllers/EnemyShipDrawLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/controllers/EnemyShipDrawLoop.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/controllers/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/controllers/GameLoop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/BossShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/BossShip.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/EnemyShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/EnemyShip.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/views/elements/SpriteSheetAnimator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/views/elements/SpriteSheetAnimator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/EnemyShipManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/EnemyShipManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/views/GamePane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/views/GamePane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/views/elements/Explosion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/views/elements/Explosion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/views/elements/ResultText.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,8 +41,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Enum" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -41,26 +62,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/khantzawhein/CMU/AdvProgramming/SpaceInvader/src/main/resources&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.3448276&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/khantzawhein/CMU/AdvProgramming/SpaceInvader/src/main/resources/com/se233/spaceinvader/assets/sounds",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.3448276",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets/sounds" />
+      <recent name="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets/sprites" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
       <recent name="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets/fonts" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets/sounds" />
       <recent name="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets/sprites" />
     </key>
   </component>
@@ -85,7 +111,7 @@
       <workItem from="1697301937797" duration="39545000" />
       <workItem from="1697388829236" duration="5828000" />
       <workItem from="1697477329253" duration="3017000" />
-      <workItem from="1697898641609" duration="7860000" />
+      <workItem from="1697898641609" duration="31014000" />
     </task>
     <servers />
   </component>

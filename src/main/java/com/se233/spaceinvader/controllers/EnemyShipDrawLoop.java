@@ -12,6 +12,7 @@ public class EnemyShipDrawLoop implements Runnable {
     private final Logger logger = LogManager.getLogger(EnemyShipDrawLoop.class);
     private final GamePane gamePane;
     private int fps = 8;
+    private final int baseFps = 8;
     private boolean running = true;
 
     public EnemyShipDrawLoop(GamePane gamePane) {
@@ -19,7 +20,7 @@ public class EnemyShipDrawLoop implements Runnable {
     }
 
     public void update() {
-        if (!gamePane.getPlayer().isReviving()) {
+        if (gamePane.isStarted() && !gamePane.getPlayer().isReviving() && !gamePane.isGameOver()) {
             updateEnemyShips();
             checkCollisions();
         }
@@ -27,7 +28,7 @@ public class EnemyShipDrawLoop implements Runnable {
 
     private void checkCollisions() {
         gamePane.getEnemyShipManager().getEnemyShips().forEach(enemyShip -> {
-            if (enemyShip.getBoundsInParent().intersects(gamePane.getDeadLine().getBoundsInParent())) {
+            if (enemyShip.getTranslateY() >= gamePane.getDeadLine().getY()) {
                 gamePane.getPlayer().setAsDead();
             }
         });
@@ -37,7 +38,11 @@ public class EnemyShipDrawLoop implements Runnable {
         int enemyCount = gamePane.getEnemyShipManager().getEnemyShips().size();
         int enemyDefeated = -(enemyCount - EnemyShipManager.ORIGINAL_ENEMY_COUNT);
 
-        this.fps = (enemyDefeated / 5) + 8;
+        if (gamePane.getEnemyShipManager().isBossMode()) {
+            this.fps = 15;
+        } else {
+            this.fps = enemyCount > 0 ? (enemyDefeated / 5) + this.baseFps : this.baseFps;
+        }
 
         Platform.runLater(() -> {
             gamePane.getEnemyShipManager().update();
@@ -51,7 +56,7 @@ public class EnemyShipDrawLoop implements Runnable {
     @Override
     public void run() {
         long time = System.currentTimeMillis();
-        while (running && !gamePane.isGameOver()) {
+        while (running) {
             try {
                 this.update();
                 float delay = 1000f / fps;

@@ -2,10 +2,13 @@ package com.se233.spaceinvader.controllers;
 
 import com.se233.spaceinvader.Launcher;
 import com.se233.spaceinvader.enums.BulletType;
+import com.se233.spaceinvader.enums.MediaIdentifier;
+import com.se233.spaceinvader.models.BossShip;
 import com.se233.spaceinvader.views.elements.Bullet;
 import com.se233.spaceinvader.models.Key;
 import com.se233.spaceinvader.views.GamePane;
 import com.se233.spaceinvader.models.EnemyShip;
+import com.se233.spaceinvader.views.elements.DisplayText;
 import javafx.application.Platform;
 import javafx.scene.input.KeyCode;
 import org.apache.logging.log4j.LogManager;
@@ -22,6 +25,8 @@ public class GameLoop implements Runnable {
     private long lastShootTime;
     private long lastEnemyShootTime;
     private boolean running = true;
+    private long pauseTimeBeforeBossCome = 5000;
+    private long generateBossShipDelay;
 
     public GameLoop(GamePane gamePane) {
         this.gamePane = gamePane;
@@ -34,8 +39,44 @@ public class GameLoop implements Runnable {
     }
 
     public void update() {
-        if (!gamePane.isGameOver() && !gamePane.getPlayer().isReviving()) {
+        if (gamePane.isStarted() && !gamePane.isGameOver() && !gamePane.getPlayer().isReviving()) {
             this.detectKey();
+            this.shootBullets();
+            this.checkAndGenerateBossShip();
+        }
+        if (!gamePane.isStarted()) {
+            this.detectStartKey();
+        }
+    }
+
+    private void detectStartKey() {
+        if (!gamePane.isStarted() && Launcher.key.isPressed(KeyCode.SPACE)) {
+            Platform.runLater(gamePane::start);
+        }
+    }
+
+    private void checkAndGenerateBossShip() {
+        if (this.generateBossShipDelay == 0 && gamePane.getEnemyShipManager().getEnemyShips().isEmpty() && !gamePane.getEnemyShipManager().isBossMode()) {
+            this.generateBossShipDelay = System.currentTimeMillis();
+            Platform.runLater(() -> {
+                gamePane.getChildren().add(DisplayText.bossComing());
+            });
+        }
+
+        if (this.generateBossShipDelay != 0 && System.currentTimeMillis() - this.generateBossShipDelay >= pauseTimeBeforeBossCome) {
+            this.generateBossShipDelay = 0;
+            Platform.runLater(() -> {
+                gamePane.getChildren().removeIf(node -> node instanceof DisplayText);
+                gamePane.getEnemyShipManager().generateBossShip();
+            });
+        }
+    }
+
+    private void shootBullets() {
+        if (gamePane.getEnemyShipManager().isBossMode()) {
+            this.shootBossBullet();
+        } else {
+            this.shootEnemyBullet();
         }
     }
 
@@ -55,30 +96,41 @@ public class GameLoop implements Runnable {
         if (key.isPressed(KeyCode.SPACE)) {
             shootBullet();
         }
-        if (System.currentTimeMillis() - lastEnemyShootTime > 1500) {
-            this.shootEnemyBullet();
-        }
     }
 
     private void shootEnemyBullet() {
+        if (System.currentTimeMillis() - lastEnemyShootTime > 1500) {
+            this.lastEnemyShootTime = System.currentTimeMillis();
+            if (Math.random() <= 0.3) {
+                gamePane.getEnemyShipManager().getEnemyShips().stream().max(EnemyShip::compareTo).ifPresent(enemyShip -> {
+                    double maxY = enemyShip.getTranslateY();
+                    List<EnemyShip> lowestShips = gamePane.getEnemyShipManager().getEnemyShips().stream().filter(ship -> ship.getTranslateY() >= maxY).toList();
+                    int enemyShipIndex = new Random().nextInt(lowestShips.size());
+                    EnemyShip randomShip = lowestShips.get(enemyShipIndex);
 
-        this.lastEnemyShootTime = System.currentTimeMillis();
-        if (Math.random() <= 0.3) {
-            gamePane.getEnemyShipManager().getEnemyShips().stream().max(EnemyShip::compareTo).ifPresent(enemyShip -> {
-                double maxY = enemyShip.getTranslateY();
-                List<EnemyShip> lowestShips = gamePane.getEnemyShipManager().getEnemyShips().stream().filter(ship -> ship.getTranslateY() >= maxY).toList();
-                int enemyShipIndex = new Random().nextInt(lowestShips.size());
-                EnemyShip randomShip = lowestShips.get(enemyShipIndex);
+                    Bullet bullet = new Bullet((int) (randomShip.getTranslateX() + (randomShip.getWidth() / 2)), (int) (randomShip.getTranslateY() + 50), BulletType.ENEMY);
+                    Platform.runLater(() -> gamePane.getChildren().add(bullet));
+                });
+            }
+        }
+    }
 
-                Bullet bullet = new Bullet((int) (randomShip.getTranslateX() + (randomShip.getWidth() / 2)), (int) (randomShip.getTranslateY() + 50), BulletType.ENEMY);
+    private void shootBossBullet() {
+        if (System.currentTimeMillis() - this.lastEnemyShootTime > 700) {
+            this.lastEnemyShootTime = System.currentTimeMillis();
+
+            if (Math.random() < 0.7) {
+                BossShip bossShip = gamePane.getEnemyShipManager().getBossShip();
+                Bullet bullet = new Bullet((int) (bossShip.getTranslateX() + (bossShip.getWidth() / 2)), (int) (bossShip.getTranslateY() + 50), BulletType.ENEMY);
                 Platform.runLater(() -> gamePane.getChildren().add(bullet));
-            });
+            }
         }
     }
 
     private void shootBullet() {
         // Throttle the shoot speed
         if (System.currentTimeMillis() - lastShootTime > 500) {
+            GamePane.MEDIA_MANAGER.play(MediaIdentifier.SHOOT_SOUND);
             this.lastShootTime = System.currentTimeMillis();
             Bullet bullet = new Bullet(gamePane.getPlayer().getPosition() + (GamePane.PLAYER_WIDTH / 2), BulletType.PLAYER);
             Platform.runLater(() -> gamePane.getChildren().add(bullet));

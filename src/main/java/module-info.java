@@ -1,5 +1,6 @@
 module com.se233.spaceinvader {
     requires javafx.controls;
+    requires javafx.media;
     requires javafx.fxml;
     requires org.apache.logging.log4j;
 

@@ -19,7 +19,7 @@ public class EnemyShip extends Pane implements Comparable<EnemyShip> {
     private final EnemyLevel enemyLevel;
     private static final int SPEED = 5;
     private boolean isDead = false;
-    private int deadAnimationFrames = 15;
+    private int deadAnimationFrames = 8;
 
     public EnemyShip(EnemyShipManager enemyShipManager, EnemyLevel enemyLevel, double x, double y) {
         super();

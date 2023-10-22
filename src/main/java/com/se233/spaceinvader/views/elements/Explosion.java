@@ -14,4 +14,13 @@ public class Explosion extends ImageView {
         this.setFitHeight(HEIGHT);
         this.setFitWidth(WIDTH);
     }
+
+    public Explosion(int size) {
+        super();
+        Image image = new Image(Launcher.class.getResourceAsStream("assets/sprites/explosion.png"));
+        this.setImage(image);
+
+        this.setFitHeight(size);
+        this.setFitWidth(size);
+    }
 }

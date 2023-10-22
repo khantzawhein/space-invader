@@ -14,7 +14,10 @@ public class EnemyShipManager {
     private ObservableList<Node> paneList;
     private boolean isMovingLeft, isMovingRight, shouldMoveLeft, shouldMoveRight;
     private Logger logger = LogManager.getLogger(EnemyShipManager.class);
+    private boolean isBossMode = false;
     public final static int ORIGINAL_ENEMY_COUNT = 60;
+
+    private BossShip bossShip = null;
 
     public EnemyShipManager(GamePane gamePane) {
         paneList = gamePane.getChildren();
@@ -43,6 +46,17 @@ public class EnemyShipManager {
         }
     }
 
+    public void generateBossShip() {
+        if (isBossMode) {
+            return;
+        }
+        isBossMode = true;
+        double currentX = 130;
+        double currentY = 80;
+        this.bossShip = new BossShip(this, currentX, currentY);
+        paneList.add(bossShip);
+    }
+
     public void update() {
         if (shouldMoveLeft) {
             moveLeft();
@@ -50,8 +64,15 @@ public class EnemyShipManager {
         if (shouldMoveRight) {
             moveRight();
         }
-        getEnemyShips().stream().forEach(EnemyShip::update);
+        if (this.isBossMode()) {
+            this.bossShip.update();
+        } else {
+            getEnemyShips().forEach(EnemyShip::update);
+        }
+    }
 
+    public BossShip getBossShip() {
+        return this.bossShip;
     }
 
     public ArrayList<EnemyShip> getEnemyShips() {
@@ -91,14 +112,6 @@ public class EnemyShipManager {
         }
     }
 
-    public void addEnemyShip(EnemyShip enemyShip) {
-        getEnemyShips().add(enemyShip);
-    }
-
-    public void removeEnemyShip(EnemyShip enemyShip) {
-        getEnemyShips().remove(enemyShip);
-    }
-
     public boolean isMovingLeft() {
         return isMovingLeft;
     }
@@ -120,5 +133,11 @@ public class EnemyShipManager {
         }
     }
 
+    public boolean isBossMode() {
+        return isBossMode && this.bossShip != null;
+    }
 
+    public boolean isBossDead() {
+        return isBossMode && this.bossShip != null && this.bossShip.isDead();
+    }
 }

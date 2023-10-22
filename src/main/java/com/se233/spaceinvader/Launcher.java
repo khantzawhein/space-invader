@@ -47,6 +47,7 @@ public class Launcher extends Application {
         gameLoop.stop();
         drawLoop.stop();
         enemyShipDrawLoop.stop();
+        System.exit(0);
     }
 
     public static GamePane getGamePane() {
