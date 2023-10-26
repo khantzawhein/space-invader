@@ -11,6 +11,6 @@ public class DeadLine extends Rectangle {
         this.setX(0);
         this.setY(640);
 
-        this.setFill(Color.RED);
+        this.setFill(Color.BLUE);
     }
 }

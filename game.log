@@ -21,3 +21,17 @@
 [ WARN] 2023-10-22 15:49:42.519 - Sun [time 51592 millisec] [Thread-4] GameLoop run:120 - ConcurrentModificationException: null
 [ WARN] 2023-10-22 15:49:44.271 - Sun [time 53344 millisec] [Thread-4] GameLoop run:120 - ConcurrentModificationException: null
 [ WARN] 2023-10-22 15:49:44.640 - Sun [time 53713 millisec] [Thread-4] GameLoop run:120 - ConcurrentModificationException: null
+[ WARN] 2023-10-26 18:32:31.122 - Thu [time 11443 millisec] [Thread-7] DrawLoop run:165 - ConcurrentModificationException: null
+[ WARN] 2023-10-26 18:32:33.081 - Thu [time 13402 millisec] [Thread-7] DrawLoop run:165 - ConcurrentModificationException: null
+[ WARN] 2023-10-26 18:32:35.673 - Thu [time 15994 millisec] [Thread-7] DrawLoop run:165 - ConcurrentModificationException: null
+[ WARN] 2023-10-26 18:32:37.140 - Thu [time 17461 millisec] [Thread-7] DrawLoop run:165 - ConcurrentModificationException: null
+[ WARN] 2023-10-26 18:32:38.111 - Thu [time 18432 millisec] [Thread-7] DrawLoop run:165 - ConcurrentModificationException: null
+[ WARN] 2023-10-26 18:32:39.924 - Thu [time 20245 millisec] [Thread-7] DrawLoop run:165 - ConcurrentModificationException: null
+[ WARN] 2023-10-26 18:32:43.360 - Thu [time 23681 millisec] [Thread-7] DrawLoop run:165 - ConcurrentModificationException: null
+[ WARN] 2023-10-26 18:32:46.245 - Thu [time 26566 millisec] [Thread-7] DrawLoop run:165 - ConcurrentModificationException: null
+[ WARN] 2023-10-26 18:32:52.669 - Thu [time 32990 millisec] [Thread-7] DrawLoop run:165 - ConcurrentModificationException: null
+[ WARN] 2023-10-26 18:32:53.268 - Thu [time 33589 millisec] [Thread-7] DrawLoop run:165 - ConcurrentModificationException: null
+[ WARN] 2023-10-26 18:32:53.797 - Thu [time 34118 millisec] [Thread-7] DrawLoop run:165 - ConcurrentModificationException: null
+[ WARN] 2023-10-26 18:32:54.610 - Thu [time 34931 millisec] [Thread-7] DrawLoop run:165 - ConcurrentModificationException: null
+[ WARN] 2023-10-26 18:32:56.431 - Thu [time 36752 millisec] [Thread-7] DrawLoop run:165 - ConcurrentModificationException: null
+[ WARN] 2023-10-26 18:33:09.354 - Thu [time 9455 millisec] [Thread-7] DrawLoop run:166 - ConcurrentModificationException: null

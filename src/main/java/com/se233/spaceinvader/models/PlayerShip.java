@@ -2,6 +2,7 @@ package com.se233.spaceinvader.models;
 
 import com.se233.spaceinvader.Launcher;
 import com.se233.spaceinvader.views.GamePane;
+import javafx.application.Platform;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -34,6 +35,7 @@ public class PlayerShip extends Pane {
 
     public void hit() {
         Launcher.getGamePane().getLives().decrementLive();
+        Platform.runLater(() -> Launcher.getGamePane().getLives().renderLive());
         if (Launcher.getGamePane().getLives().count() == 0) {
             setAsDead();
         }

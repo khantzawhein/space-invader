@@ -7,7 +7,8 @@ public enum MediaIdentifier {
     EXPLOSION_SOUND("explosionSound"),
     BOSS_SOUND("bossSound"),
     GAME_OVER_SOUND("gameOverSound"),
-    WIN_SOUND("winSound");
+    WIN_SOUND("winSound"),
+    POWER_UP_SOUND("powerUpSound");
 
     private String name;
 

@@ -17,6 +17,9 @@ public class Lives extends Text {
 
     public void decrementLive() {
         lives--;
+    }
+
+    public void renderLive() {
         this.setText("Lives: " + lives);
     }
 

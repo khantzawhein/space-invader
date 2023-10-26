@@ -2,13 +2,12 @@ package com.se233.spaceinvader.models;
 
 import com.se233.spaceinvader.Launcher;
 import com.se233.spaceinvader.enums.MediaIdentifier;
+import com.se233.spaceinvader.models.managers.EnemyShipManager;
 import com.se233.spaceinvader.views.GamePane;
 import com.se233.spaceinvader.views.elements.Explosion;
-import com.se233.spaceinvader.views.elements.SpriteSheetAnimator;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 
 public class BossShip extends Pane {
     private final EnemyShipManager enemyShipManager;

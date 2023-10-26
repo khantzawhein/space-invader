@@ -1,7 +1,8 @@
-package com.se233.spaceinvader.models;
+package com.se233.spaceinvader.models.managers;
 
 import com.se233.spaceinvader.Launcher;
 import com.se233.spaceinvader.enums.MediaIdentifier;
+import com.se233.spaceinvader.models.Sound;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 
@@ -35,6 +36,9 @@ public class MediaManager {
 
         Sound bossSound = new Sound(new File(Objects.requireNonNull(Launcher.class.getResource("assets/sounds/ufo_highpitch.wav")).getFile()));
         library.put(MediaIdentifier.BOSS_SOUND, bossSound);
+
+        Sound powerUpSound = new Sound(new File(Objects.requireNonNull(Launcher.class.getResource("assets/sounds/power-up.mp3")).getFile()));
+        library.put(MediaIdentifier.POWER_UP_SOUND, powerUpSound);
     }
 
     public void play(MediaIdentifier name) {

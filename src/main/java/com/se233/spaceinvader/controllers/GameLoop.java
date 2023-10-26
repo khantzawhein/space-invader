@@ -9,6 +9,8 @@ import com.se233.spaceinvader.models.Key;
 import com.se233.spaceinvader.views.GamePane;
 import com.se233.spaceinvader.models.EnemyShip;
 import com.se233.spaceinvader.views.elements.DisplayText;
+import com.se233.spaceinvader.views.elements.Rocket;
+import com.se233.spaceinvader.views.elements.RocketDrop;
 import javafx.application.Platform;
 import javafx.scene.input.KeyCode;
 import org.apache.logging.log4j.LogManager;
@@ -42,11 +44,16 @@ public class GameLoop implements Runnable {
         if (gamePane.isStarted() && !gamePane.isGameOver() && !gamePane.getPlayer().isReviving()) {
             this.detectKey();
             this.shootBullets();
+            this.dropPowerUps();
             this.checkAndGenerateBossShip();
         }
         if (!gamePane.isStarted()) {
             this.detectStartKey();
         }
+    }
+
+    private void dropPowerUps() {
+        gamePane.getPowerUpManager().generatePowerUp();
     }
 
     private void detectStartKey() {
@@ -83,18 +90,35 @@ public class GameLoop implements Runnable {
     private void detectKey() {
         Key key = Launcher.key;
         if (key.isPressed(KeyCode.LEFT) && !key.isPressed(KeyCode.RIGHT)) {
-            gamePane.getPlayer().moveLeft();
+            Platform.runLater(() -> gamePane.getPlayer().moveLeft());
             if (Math.random() < 0.15) {
                 logger.debug("Player move left, position: " + gamePane.getPlayer().getPosition());
             }
         } else if (key.isPressed(KeyCode.RIGHT) && !key.isPressed(KeyCode.LEFT)) {
-            gamePane.getPlayer().moveRight();
+            Platform.runLater(() -> gamePane.getPlayer().moveRight());
             if (Math.random() < 0.15) {
                 logger.debug("Player move right, position: " + gamePane.getPlayer().getPosition());
             }
         }
         if (key.isPressed(KeyCode.SPACE)) {
-            shootBullet();
+            if (gamePane.getPowerUpManager().getPlayerRocketPowerUpCount() > 0 && !gamePane.getEnemyShipManager().isBossMode()) {
+                shootRocket();
+            } else {
+                shootBullet();
+            }
+
+        }
+    }
+
+    private void shootRocket() {
+        if (System.currentTimeMillis() - lastShootTime > 700 && gamePane.getPowerUpManager().getPlayerRocketPowerUpCount() > 0) {
+            this.lastShootTime = System.currentTimeMillis();
+            gamePane.getPowerUpManager().decrementPlayerRocketPowerUpCount();
+            Rocket rocket = new Rocket(gamePane.getPlayer().getPosition() + (GamePane.PLAYER_WIDTH / 2.0) - 7.5);
+            GamePane.MEDIA_MANAGER.play(MediaIdentifier.SHOOT_SOUND);
+            Platform.runLater(() -> {
+                gamePane.getChildren().add(rocket);
+            });
         }
     }
 
@@ -104,12 +128,12 @@ public class GameLoop implements Runnable {
             if (Math.random() <= 0.4) {
                 gamePane.getEnemyShipManager().getEnemyShips().stream().max(EnemyShip::compareTo).ifPresent(enemyShip -> {
                     GamePane.MEDIA_MANAGER.play(MediaIdentifier.SHOOT_SOUND);
-                    double maxY = enemyShip.getTranslateY();
-                    List<EnemyShip> lowestShips = gamePane.getEnemyShipManager().getEnemyShips().stream().filter(ship -> ship.getTranslateY() >= maxY).toList();
+                    double maxY = enemyShip.getLayoutY();
+                    List<EnemyShip> lowestShips = gamePane.getEnemyShipManager().getEnemyShips().stream().filter(ship -> ship.getLayoutY() >= maxY).toList();
                     int enemyShipIndex = new Random().nextInt(lowestShips.size());
                     EnemyShip randomShip = lowestShips.get(enemyShipIndex);
 
-                    Bullet bullet = new Bullet((int) (randomShip.getTranslateX() + (randomShip.getWidth() / 2)), (int) (randomShip.getTranslateY() + 50), BulletType.ENEMY);
+                    Bullet bullet = new Bullet((int) (randomShip.getLayoutX() + (randomShip.getWidth() / 2)), (int) (randomShip.getLayoutY() + 50), BulletType.ENEMY);
                     Platform.runLater(() -> gamePane.getChildren().add(bullet));
                 });
             }

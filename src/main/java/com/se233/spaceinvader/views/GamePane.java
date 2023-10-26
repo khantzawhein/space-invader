@@ -1,18 +1,13 @@
 package com.se233.spaceinvader.views;
 
-import com.se233.spaceinvader.Launcher;
 import com.se233.spaceinvader.enums.MediaIdentifier;
 import com.se233.spaceinvader.models.*;
-import com.se233.spaceinvader.views.elements.Bullet;
-import com.se233.spaceinvader.views.elements.DeadLine;
-import com.se233.spaceinvader.views.elements.DisplayText;
-import com.se233.spaceinvader.views.elements.StartPage;
+import com.se233.spaceinvader.models.managers.EnemyShipManager;
+import com.se233.spaceinvader.models.managers.MediaManager;
+import com.se233.spaceinvader.models.managers.PowerUpManager;
+import com.se233.spaceinvader.views.elements.*;
 import javafx.scene.Node;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.Pane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.paint.Paint;
+import javafx.scene.layout.*;
 import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;
@@ -27,7 +22,9 @@ public class GamePane extends Pane {
     private final PlayerShip player;
     private final Lives lives;
     private final EnemyShipManager enemyShipManager;
+    private final PowerUpManager powerUpManager;
     private final Rectangle deadLine;
+    private final PowerUpRocketCount powerUpRocketCount;
     private boolean started = false;
     private StartPage startPage;
     public static final MediaManager MEDIA_MANAGER = new MediaManager();
@@ -35,14 +32,16 @@ public class GamePane extends Pane {
     public GamePane() {
         super();
         this.setPrefSize(WIDTH, HEIGHT);
-        this.setBackground(Background.fill(Paint.valueOf("#000000")));
+
         this.player = new PlayerShip((WIDTH / 2) - PLAYER_WIDTH);
         this.score = new Score();
         this.lives = new Lives();
         this.deadLine = new DeadLine();
         startPage = new StartPage();
-        this.getChildren().addAll(player, score, lives, deadLine, startPage);
+        powerUpRocketCount = new PowerUpRocketCount();
+        this.getChildren().addAll(new Background(), player, score, lives, deadLine, startPage, powerUpRocketCount);
         enemyShipManager = new EnemyShipManager(this);
+        powerUpManager = new PowerUpManager(this);
         MEDIA_MANAGER.play(MediaIdentifier.BG_SOUND);
     }
 
@@ -69,6 +68,14 @@ public class GamePane extends Pane {
     public ArrayList<Bullet> getBullets() {
         return this.getChildrenConcurrentSafe().stream().filter(node -> node instanceof Bullet)
                 .map(node -> (Bullet) node).collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    public PowerUpManager getPowerUpManager() {
+        return powerUpManager;
+    }
+
+    public PowerUpRocketCount getPowerUpRocketCount() {
+        return powerUpRocketCount;
     }
 
     public DisplayText getResultText() {

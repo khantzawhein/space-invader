@@ -8,11 +8,16 @@ import com.se233.spaceinvader.views.elements.Bullet;
 import com.se233.spaceinvader.views.GamePane;
 import com.se233.spaceinvader.models.EnemyShip;
 import com.se233.spaceinvader.views.elements.DisplayText;
+import com.se233.spaceinvader.views.elements.Rocket;
+import com.se233.spaceinvader.views.elements.RocketDrop;
 import javafx.application.Platform;
+import javafx.scene.Node;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
+import java.util.stream.Collectors;
 
 public class DrawLoop implements Runnable {
     private final Logger logger = LogManager.getLogger(DrawLoop.class);
@@ -29,12 +34,18 @@ public class DrawLoop implements Runnable {
         tickResultText();
         if (gamePane.isStarted()) {
             gamePane.getPlayer().update();
-            updateBullets();
+            updateMissiles();
+            updateDrops();
+            checkPowerUpHit();
             showExplosionAndRemoveDeadEnemyShips();
             setResultText();
         } else {
             tickStartPage();
         }
+    }
+
+    private void updateDrops() {
+        gamePane.getPowerUpManager().update();
     }
 
     private void tickStartPage() {
@@ -44,6 +55,15 @@ public class DrawLoop implements Runnable {
                 Platform.runLater(displayText::tick);
             }
         });
+    }
+
+    private void checkPowerUpHit() {
+        for (RocketDrop rocketDrop : gamePane.getPowerUpManager().getRocketDrops().stream().filter(rocketDrop -> rocketDrop.getBoundsInParent().intersects(gamePane.getPlayer().getBoundsInParent())).toArray(RocketDrop[]::new)) {
+            gamePane.getPowerUpManager().removeFromPane(rocketDrop);
+            logger.info("Player hit by rocket power up, position: " + rocketDrop.getTranslateY());
+            GamePane.MEDIA_MANAGER.play(MediaIdentifier.POWER_UP_SOUND);
+            gamePane.getPowerUpManager().incrementPlayerRocketPowerUpCount();
+        }
     }
 
     private void tickResultText() {
@@ -68,15 +88,50 @@ public class DrawLoop implements Runnable {
         }
     }
 
-    private void updateBullets() {
-        for (Bullet bullet : gamePane.getBullets()) {
+    private void updateMissiles() {
+        ArrayList<Node> nodes = gamePane.getChildrenConcurrentSafe();
+        ArrayList<Bullet> bullets = nodes.stream().filter(node -> node instanceof Bullet).map(node -> (Bullet) node).collect(Collectors.toCollection(ArrayList::new));
+        ArrayList<Rocket> rockets = nodes.stream().filter(node -> node instanceof Rocket).map(node -> (Rocket) node).collect(Collectors.toCollection(ArrayList::new));
+        for (Bullet bullet : bullets) {
             Platform.runLater(bullet::update);
-
             if (bullet.isOutOfBound()) {
                 Platform.runLater(() -> gamePane.getChildren().remove(bullet));
                 logger.debug("Bullet removed, position: " + bullet.getTranslateY());
             }
             checkBulletHit(bullet);
+        }
+
+        for (Rocket rocket : rockets) {
+            Platform.runLater(rocket::update);
+            if (rocket.isOutOfBound()) {
+                Platform.runLater(() -> gamePane.getChildren().remove(rocket));
+                logger.info("Rocket removed, position: " + rocket.getTranslateY());
+            }
+            checkRocketHit(rocket);
+        }
+    }
+
+    private void checkRocketHit(Rocket rocket) {
+        for (EnemyShip enemyShip : gamePane.getEnemyShipManager().getEnemyShips()) {
+            if (!enemyShip.isDead() && rocket.getBoundsInParent().intersects(enemyShip.getBoundsInParent())) {
+                logger.info("Enemy hit by rocket, position: " + rocket.getTranslateY());
+                GamePane.MEDIA_MANAGER.play(MediaIdentifier.INVADER_KILLED);
+                ArrayList<EnemyShip> surroundingEnemies = gamePane.getEnemyShipManager().getSurroundingEnemies(enemyShip);
+                int score = 0;
+                for (EnemyShip surroundingEnemy : surroundingEnemies) {
+                    EnemyLevel enemyLevel = surroundingEnemy.getEnemyLevel();
+                    score += enemyLevel == EnemyLevel.FRONT ? 10 : enemyLevel == EnemyLevel.MIDDLE ? 20 : 30;
+
+                }
+                gamePane.getScore().incrementScoreBy(score);
+                    Platform.runLater(() -> {
+                        gamePane.getChildren().removeAll(surroundingEnemies);
+                        gamePane.getChildren().remove(rocket);
+                        gamePane.getScore().renderScore();
+                    });
+
+                break;
+            }
         }
     }
 
@@ -156,6 +211,7 @@ public class DrawLoop implements Runnable {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (ConcurrentModificationException e) {
+                e.printStackTrace();
                 logger.warn("ConcurrentModificationException: " + e.getMessage());
             }
         }

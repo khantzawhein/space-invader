@@ -5,21 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e4e9b65-43d5-44ec-919e-af41fa8179d8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets/sounds/explosion.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets/sounds/ufo_highpitch.wav" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets/sprites/player-died.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets/sprites/player-ship.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/managers/PowerUpManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/views/Background.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/views/elements/PowerUpRocketCount.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/views/elements/Rocket.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/views/elements/RocketDrop.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets/background.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets/background.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets/sounds/power-up.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets/sprites/rocket-icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets/sprites/rocket.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game.log" beforeDir="false" afterPath="$PROJECT_DIR$/game.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/controllers/DrawLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/controllers/DrawLoop.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/controllers/EnemyShipDrawLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/controllers/EnemyShipDrawLoop.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/controllers/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/controllers/GameLoop.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/enums/MediaIdentifier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/enums/MediaIdentifier.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/BossShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/BossShip.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/EnemyShipManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/EnemyShipManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/MediaManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/MediaManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/EnemyShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/EnemyShip.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/EnemyShipManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/managers/EnemyShipManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/Lives.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/Lives.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/MediaManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/managers/MediaManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/PlayerShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/PlayerShip.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/Sound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/Sound.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/views/elements/Bullet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/views/elements/Bullet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/views/GamePane.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/views/GamePane.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/views/elements/DeadLine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/views/elements/DeadLine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/views/elements/StartPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/views/elements/StartPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets/sprites/player.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,8 +41,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -55,7 +67,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/khantzawhein/CMU/AdvProgramming/SpaceInvader/src/main/resources/com/se233/spaceinvader/assets/sounds",
+    "last_opened_file_path": "/Users/khantzawhein/CMU/AdvProgramming/SpaceInvader/src/main/resources/com/se233/spaceinvader/assets/sprites",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -68,8 +80,9 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets/sounds" />
       <recent name="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets/sprites" />
+      <recent name="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets/sounds" />
+      <recent name="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
       <recent name="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets/fonts" />
     </key>
@@ -99,7 +112,7 @@
       <workItem from="1697301937797" duration="39545000" />
       <workItem from="1697388829236" duration="5828000" />
       <workItem from="1697477329253" duration="3017000" />
-      <workItem from="1697898641609" duration="37093000" />
+      <workItem from="1697898641609" duration="55982000" />
     </task>
     <servers />
   </component>

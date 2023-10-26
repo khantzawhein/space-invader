@@ -1,6 +1,6 @@
 package com.se233.spaceinvader.controllers;
 
-import com.se233.spaceinvader.models.EnemyShipManager;
+import com.se233.spaceinvader.models.managers.EnemyShipManager;
 import com.se233.spaceinvader.views.GamePane;
 import javafx.application.Platform;
 import org.apache.logging.log4j.LogManager;
@@ -27,10 +27,12 @@ public class EnemyShipDrawLoop implements Runnable {
     }
 
     private void checkCollisions() {
-        gamePane.getEnemyShipManager().getEnemyShips().forEach(enemyShip -> {
-            if (enemyShip.getTranslateY() + enemyShip.getHeight() >= gamePane.getDeadLine().getY()) {
-                gamePane.getPlayer().setAsDead();
-            }
+        Platform.runLater(() -> {
+            gamePane.getEnemyShipManager().getEnemyShips().forEach(enemyShip -> {
+                if (enemyShip.getLayoutY() + enemyShip.getHeight() >= gamePane.getDeadLine().getY()) {
+                    gamePane.getPlayer().setAsDead();
+                }
+            });
         });
     }
 

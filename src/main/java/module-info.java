@@ -11,4 +11,5 @@ module com.se233.spaceinvader {
     exports com.se233.spaceinvader.views;
     exports com.se233.spaceinvader.enums;
     exports com.se233.spaceinvader.views.elements;
+    exports com.se233.spaceinvader.models.managers;
 }

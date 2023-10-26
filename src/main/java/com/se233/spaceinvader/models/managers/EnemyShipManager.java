@@ -1,6 +1,8 @@
-package com.se233.spaceinvader.models;
+package com.se233.spaceinvader.models.managers;
 
 import com.se233.spaceinvader.enums.EnemyLevel;
+import com.se233.spaceinvader.models.BossShip;
+import com.se233.spaceinvader.models.EnemyShip;
 import com.se233.spaceinvader.views.GamePane;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
@@ -16,6 +18,8 @@ public class EnemyShipManager {
     private Logger logger = LogManager.getLogger(EnemyShipManager.class);
     private boolean isBossMode = false;
     public final static int ORIGINAL_ENEMY_COUNT = 60;
+
+    private ArrayList<EnemyShip> originalEnemyShips = new ArrayList<>();
 
     private BossShip bossShip = null;
 
@@ -37,9 +41,10 @@ public class EnemyShipManager {
             for (int i = 0; i < 2; i++) {
                 currentY -= 40;
                 currentX = initialX;
-                for (int j = 0; j < 10; j++) {
+                for (int j = 0; j < 8; j++) {
                     EnemyShip enemyShip = new EnemyShip(this, enemyLevel, currentX, currentY);
                     paneList.add(enemyShip);
+                    originalEnemyShips.add(enemyShip);
                     currentX += enemyShip.getWidth() + margin;
                 }
             }
@@ -71,6 +76,25 @@ public class EnemyShipManager {
         }
     }
 
+    public ArrayList<EnemyShip> getSurroundingEnemies(EnemyShip enemyShip) {
+        ArrayList<EnemyShip> surroundingEnemies = new ArrayList<>();
+        surroundingEnemies.add(enemyShip);
+        int currentIndex = originalEnemyShips.indexOf(enemyShip);
+        int rightIndex = currentIndex + 1;
+        int topIndex = currentIndex + 8;
+        int topRightIndex = topIndex + 1;
+
+        if (rightIndex < originalEnemyShips.size()) {
+            surroundingEnemies.add(originalEnemyShips.get(rightIndex));
+        }
+        if (topIndex >= 0 && topIndex < originalEnemyShips.size()) {
+            surroundingEnemies.add(originalEnemyShips.get(topIndex));
+        }
+        if (topRightIndex >= 0 && topRightIndex < originalEnemyShips.size()) {
+            surroundingEnemies.add(originalEnemyShips.get(topRightIndex));
+        }
+        return surroundingEnemies;
+    }
     public BossShip getBossShip() {
         return this.bossShip;
     }

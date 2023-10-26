@@ -12,13 +12,10 @@ public class StartPage extends StackPane {
         this.setAlignment(Pos.CENTER);
         ImageView imageView = new ImageView(new Image(Launcher.class.getResourceAsStream("assets/sprites/logo.png")));
         imageView.setTranslateY(100);
-        DisplayText authorText = new DisplayText("SE233 Project By\n\nPotatoes and French Fry Team", 100, DisplayTextAnimation.TICKING);
+        DisplayText authorText = new DisplayText("SE233 Project II\n\nBy Potatoes and French Fry Team", 110, DisplayTextAnimation.TICKING);
         authorText.setTranslateY(250);
         DisplayText startText = DisplayText.startText();
         startText.setTranslateY(400);
         this.getChildren().addAll(imageView, authorText, startText);
     }
-
-
-
 }

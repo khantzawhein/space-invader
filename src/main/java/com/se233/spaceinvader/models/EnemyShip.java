@@ -1,12 +1,10 @@
 package com.se233.spaceinvader.models;
 
-import com.se233.spaceinvader.Launcher;
 import com.se233.spaceinvader.enums.EnemyLevel;
+import com.se233.spaceinvader.models.managers.EnemyShipManager;
 import com.se233.spaceinvader.views.GamePane;
 import com.se233.spaceinvader.views.elements.Explosion;
 import com.se233.spaceinvader.views.elements.SpriteSheetAnimator;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -23,8 +21,8 @@ public class EnemyShip extends Pane implements Comparable<EnemyShip> {
 
     public EnemyShip(EnemyShipManager enemyShipManager, EnemyLevel enemyLevel, double x, double y) {
         super();
-        this.setTranslateX(x);
-        this.setTranslateY(y);
+        this.setLayoutX(x);
+        this.setLayoutY(y);
         this.enemyShipManager = enemyShipManager;
         this.enemyLevel = enemyLevel;
         if (enemyLevel == EnemyLevel.FRONT) {
@@ -62,14 +60,14 @@ public class EnemyShip extends Pane implements Comparable<EnemyShip> {
         this.spriteSheetAnimator.tick();
 
         if (enemyShipManager.isMovingLeft()) {
-            this.setTranslateX(this.getTranslateX() - SPEED);
+            this.setLayoutX(this.getLayoutX() - SPEED);
         } else if (enemyShipManager.isMovingRight()) {
-            this.setTranslateX(this.getTranslateX() + SPEED);
+            this.setLayoutX(this.getLayoutX() + SPEED);
         }
 
-        if (this.getTranslateX() < 20) {
+        if (this.getLayoutX() < 20) {
             this.enemyShipManager.boundaryHitLeft();
-        } else if (this.getTranslateX() > GamePane.WIDTH - 50) {
+        } else if (this.getLayoutX() > GamePane.WIDTH - 50) {
             this.enemyShipManager.boundaryHitRight();
         }
     }
@@ -79,11 +77,11 @@ public class EnemyShip extends Pane implements Comparable<EnemyShip> {
     }
 
     public void moveDown() {
-        this.setTranslateY(this.getTranslateY() + 15);
+        this.setLayoutY(this.getLayoutY() + 15);
     }
 
     @Override
     public int compareTo(EnemyShip o) {
-        return Double.compare(this.getTranslateY(), o.getTranslateY());
+        return Double.compare(this.getLayoutY(), o.getLayoutY());
     }
 }
