@@ -6,8 +6,8 @@ import java.io.File;
 
 public class Sound {
     private final Media media;
-    public Sound(File file) {
-        media = new Media(file.toURI().toString());
+    public Sound(String sound) {
+        media = new Media(sound);
     }
 
     public Media getMedia() {

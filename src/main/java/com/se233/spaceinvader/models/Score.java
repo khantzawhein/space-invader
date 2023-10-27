@@ -23,4 +23,8 @@ public class Score extends Text {
     public void renderScore() {
         this.setText("Score: " + String.format("%05d", this.score));
     }
+
+    public int getScore() {
+        return score;
+    }
 }

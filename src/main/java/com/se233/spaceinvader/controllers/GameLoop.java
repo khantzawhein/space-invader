@@ -40,7 +40,7 @@ public class GameLoop implements Runnable {
         running = false;
     }
 
-    public void update() {
+    private void update() {
         if (gamePane.isStarted() && !gamePane.isGameOver() && !gamePane.getPlayer().isReviving()) {
             this.detectKey();
             this.shootBullets();
@@ -161,7 +161,7 @@ public class GameLoop implements Runnable {
             this.lastShootTime = System.currentTimeMillis();
             Bullet bullet = new Bullet(gamePane.getPlayer().getPosition() + (GamePane.PLAYER_WIDTH / 2), BulletType.PLAYER);
             Platform.runLater(() -> gamePane.getChildren().add(bullet));
-            logger.debug("Player shoot, position: " + gamePane.getPlayer().getPosition());
+            logger.info("Player shoot, position: " + gamePane.getPlayer().getPosition());
         }
     }
 

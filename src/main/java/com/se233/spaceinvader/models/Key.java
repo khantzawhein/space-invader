@@ -5,7 +5,7 @@ import javafx.scene.input.KeyCode;
 import java.util.HashMap;
 
 public class Key {
-    private final HashMap<KeyCode,Boolean> keys;
+    private final HashMap<KeyCode, Boolean> keys;
 
     public Key() {
         keys = new HashMap<>();
@@ -20,6 +20,10 @@ public class Key {
     }
 
     public boolean isPressed(KeyCode key) {
-        return keys.getOrDefault(key,false);
+        return keys.getOrDefault(key, false);
+    }
+
+    public void removeAll() {
+        keys.clear();
     }
 }

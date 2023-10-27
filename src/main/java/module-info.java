@@ -3,6 +3,7 @@ module com.se233.spaceinvader {
     requires javafx.media;
     requires javafx.fxml;
     requires org.apache.logging.log4j;
+    requires javafx.swing;
 
     opens com.se233.spaceinvader to javafx.fxml;
     exports com.se233.spaceinvader;

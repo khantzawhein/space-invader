@@ -5,15 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e4e9b65-43d5-44ec-919e-af41fa8179d8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets/sounds/power-up.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/JarLauncher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets/sounds/win-sound.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/se233/spaceinvader/CharacterActionsTesting.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/se233/spaceinvader/CharacterTesting.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/se233/spaceinvader/JUnitTestSuite.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/controllers/DrawLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/controllers/DrawLoop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/controllers/EnemyShipDrawLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/controllers/EnemyShipDrawLoop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/PlayerShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/PlayerShip.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/controllers/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/controllers/GameLoop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/Key.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/Key.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/Score.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/Score.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/Sound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/Sound.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/managers/MediaManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/managers/MediaManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets/background.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets/sounds/power-up.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,11 +54,12 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/khantzawhein/CMU/AdvProgramming/SpaceInvader/src/main/resources/com/se233/spaceinvader/assets/sounds",
+    "last_opened_file_path": "/Users/khantzawhein/CMU/AdvProgramming/SpaceInvader",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.3448276",
@@ -62,18 +68,18 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets/sounds" />
       <recent name="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets/sprites" />
       <recent name="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
-      <recent name="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets/fonts" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets/sounds" />
       <recent name="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets/sprites" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Run">
     <configuration name="Run" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="com.se233.spaceinvader.Launcher" />
       <module name="spaceinvader" />
@@ -81,6 +87,93 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="CharacterActionsTesting" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="spaceinvader" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.se233.spaceinvader.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.se233.spaceinvader" />
+      <option name="MAIN_CLASS_NAME" value="com.se233.spaceinvader.CharacterActionsTesting" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CharacterActionsTesting.characterCanShootAndHitEnemyShip" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="spaceinvader" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.se233.spaceinvader.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.se233.spaceinvader" />
+      <option name="MAIN_CLASS_NAME" value="com.se233.spaceinvader.CharacterActionsTesting" />
+      <option name="METHOD_NAME" value="characterCanShootAndHitEnemyShip" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CharacterActionsTesting.characterCanShootBullet" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="spaceinvader" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.se233.spaceinvader.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.se233.spaceinvader" />
+      <option name="MAIN_CLASS_NAME" value="com.se233.spaceinvader.CharacterActionsTesting" />
+      <option name="METHOD_NAME" value="characterCanShootBullet" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CharacterActionsTesting.playerScoreShouldIncreaseWhenEnemyHasBeenKilled" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="spaceinvader" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.se233.spaceinvader.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.se233.spaceinvader" />
+      <option name="MAIN_CLASS_NAME" value="com.se233.spaceinvader.CharacterActionsTesting" />
+      <option name="METHOD_NAME" value="playerScoreShouldIncreaseWhenEnemyHasBeenKilled" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JUnitTestSuite" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="spaceinvader" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.se233.spaceinvader.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.se233.spaceinvader" />
+      <option name="MAIN_CLASS_NAME" value="com.se233.spaceinvader.JUnitTestSuite" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.JUnitTestSuite" />
+        <item itemvalue="JUnit.CharacterActionsTesting.characterCanShootAndHitEnemyShip" />
+        <item itemvalue="JUnit.CharacterActionsTesting" />
+        <item itemvalue="JUnit.CharacterActionsTesting.playerScoreShouldIncreaseWhenEnemyHasBeenKilled" />
+        <item itemvalue="JUnit.CharacterActionsTesting.characterCanShootBullet" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -94,7 +187,8 @@
       <workItem from="1697301937797" duration="39545000" />
       <workItem from="1697388829236" duration="5828000" />
       <workItem from="1697477329253" duration="3017000" />
-      <workItem from="1697898641609" duration="58964000" />
+      <workItem from="1697898641609" duration="62399000" />
+      <workItem from="1698399646519" duration="9424000" />
     </task>
     <servers />
   </component>

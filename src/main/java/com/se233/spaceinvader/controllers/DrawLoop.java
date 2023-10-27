@@ -1,5 +1,6 @@
 package com.se233.spaceinvader.controllers;
 
+import com.se233.spaceinvader.Launcher;
 import com.se233.spaceinvader.enums.BulletType;
 import com.se233.spaceinvader.enums.EnemyLevel;
 import com.se233.spaceinvader.enums.MediaIdentifier;
@@ -64,7 +65,7 @@ public class DrawLoop implements Runnable {
     private void checkPowerUpHit() {
         for (RocketDrop rocketDrop : gamePane.getPowerUpManager().getRocketDrops().stream().filter(rocketDrop -> rocketDrop.getBoundsInParent().intersects(gamePane.getPlayer().getBoundsInParent())).toArray(RocketDrop[]::new)) {
             gamePane.getPowerUpManager().removeFromPane(rocketDrop);
-            logger.info("Player hit by rocket power up, position: " + rocketDrop.getTranslateY());
+            logger.info("Player hit by rocket power up, position: " + rocketDrop.getTranslateX());
             GamePane.MEDIA_MANAGER.play(MediaIdentifier.POWER_UP_SOUND);
             gamePane.getPowerUpManager().incrementPlayerRocketPowerUpCount();
         }
@@ -172,7 +173,7 @@ public class DrawLoop implements Runnable {
         } else {
             for (EnemyShip enemyShip : gamePane.getEnemyShipManager().getEnemyShips()) {
                 if (!enemyShip.isDead() && bullet.getBoundsInParent().intersects(enemyShip.getBoundsInParent())) {
-                    logger.info("Enemy hit by bullet, position: " + bullet.getTranslateY());
+                    logger.info("Enemy hit by bullet, position: " + bullet.getTranslateX());
                     GamePane.MEDIA_MANAGER.play(MediaIdentifier.INVADER_KILLED);
                     EnemyLevel enemyLevel = enemyShip.getEnemyLevel();
                     int score = enemyLevel == EnemyLevel.FRONT ? 10 : enemyLevel == EnemyLevel.MIDDLE ? 20 : 30;
@@ -193,8 +194,10 @@ public class DrawLoop implements Runnable {
             this.isResultTextSet = true;
             Platform.runLater(() -> {
                 if (gamePane.getEnemyShipManager().getEnemyShips().isEmpty() && !gamePane.getPlayer().isDead()) {
+                    GamePane.MEDIA_MANAGER.play(MediaIdentifier.WIN_SOUND);
                     gamePane.getChildren().add(DisplayText.win());
                 } else if (gamePane.getPlayer().isDead()) {
+//                    GamePane.MEDIA_MANAGER.play(MediaIdentifier.GAME_OVER_SOUND);
                     gamePane.getChildren().add(DisplayText.gameOver());
                 }
             });
