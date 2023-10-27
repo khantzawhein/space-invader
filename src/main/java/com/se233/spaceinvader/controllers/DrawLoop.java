@@ -33,7 +33,7 @@ public class DrawLoop implements Runnable {
     private void update() {
         tickResultText();
         if (gamePane.isStarted()) {
-            gamePane.getPlayer().update();
+            updatePlayer();
             updateMissiles();
             updateDrops();
             checkPowerUpHit();
@@ -42,6 +42,10 @@ public class DrawLoop implements Runnable {
         } else {
             tickStartPage();
         }
+    }
+
+    private void updatePlayer() {
+        Platform.runLater(gamePane.getPlayer()::update);
     }
 
     private void updateDrops() {

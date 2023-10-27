@@ -37,16 +37,16 @@ public class PlayerShip extends Pane {
         Launcher.getGamePane().getLives().decrementLive();
         Platform.runLater(() -> Launcher.getGamePane().getLives().renderLive());
         if (Launcher.getGamePane().getLives().count() == 0) {
-            setAsDead();
+            Platform.runLater(this::setAsDead);
         }
         else {
             this.isReviving = true;
             // Blink the player three times
             for (int i = 0; i < 3; i++) {
                 try {
-                    this.setVisible(false);
+                    Platform.runLater(() -> this.setVisible(false));
                     Thread.sleep(200);
-                    this.setVisible(true);
+                    Platform.runLater(() -> this.setVisible(true));
                     Thread.sleep(200);
                 } catch (InterruptedException e) {
                     e.printStackTrace();

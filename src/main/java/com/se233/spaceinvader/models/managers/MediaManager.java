@@ -37,7 +37,7 @@ public class MediaManager {
         Sound bossSound = new Sound(new File(Objects.requireNonNull(Launcher.class.getResource("assets/sounds/ufo_highpitch.wav")).getFile()));
         library.put(MediaIdentifier.BOSS_SOUND, bossSound);
 
-        Sound powerUpSound = new Sound(new File(Objects.requireNonNull(Launcher.class.getResource("assets/sounds/power-up.mp3")).getFile()));
+        Sound powerUpSound = new Sound(new File(Objects.requireNonNull(Launcher.class.getResource("assets/sounds/power-up.wav")).getFile()));
         library.put(MediaIdentifier.POWER_UP_SOUND, powerUpSound);
     }
 
