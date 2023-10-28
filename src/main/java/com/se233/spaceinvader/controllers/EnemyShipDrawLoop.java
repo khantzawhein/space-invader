@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.ConcurrentModificationException;
 
 public class EnemyShipDrawLoop implements Runnable {
-    private final Logger logger = LogManager.getLogger(EnemyShipDrawLoop.class);
+    private static final Logger logger = LogManager.getLogger(EnemyShipDrawLoop.class);
     private final GamePane gamePane;
     private int fps = 8;
     private final int baseFps = 8;
@@ -67,9 +67,11 @@ public class EnemyShipDrawLoop implements Runnable {
                     Thread.sleep((long) delay);
                 }
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                logger.warn("InterruptedException: " + e.getMessage());
             } catch (ConcurrentModificationException e) {
                 logger.warn(e.getMessage());
+            } catch (Throwable e) {
+                logger.error("Error: {}, Message: {}", e.getClass().getName(), e.getMessage());
             }
         }
     }

@@ -14,8 +14,6 @@ public class SpriteSheetAnimator extends ImageView {
     private int currentIndex;
     private final int WIDTH = 15, HEIGHT = 15;
 
-    Logger logger = org.apache.logging.log4j.LogManager.getLogger(SpriteSheetAnimator.class);
-
     public SpriteSheetAnimator(int startColumn, int startRow, int numColumns, int imgSize) {
         this.setImage(new Image(Launcher.class.getResourceAsStream("assets/sprites/invaders-sheet.png")));
         this.count = numColumns;

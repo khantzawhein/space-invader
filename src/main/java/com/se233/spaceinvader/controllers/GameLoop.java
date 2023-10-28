@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Random;
 
 public class GameLoop implements Runnable {
-    private final Logger logger = LogManager.getLogger(GameLoop.class);
+    private static final Logger logger = LogManager.getLogger(GameLoop.class);
     private GamePane gamePane;
     private final int fps = 60;
     private long lastShootTime;
@@ -173,9 +173,11 @@ public class GameLoop implements Runnable {
                 float delay = 1000f / fps;
                 Thread.sleep((long) delay);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                logger.error("InterruptedException: " + e.getMessage());
             } catch (ConcurrentModificationException e) {
                 logger.warn("ConcurrentModificationException: " + e.getMessage());
+            } catch (Throwable e) {
+                logger.error("Error: {}, Message: {}", e.getClass().getName(), e.getMessage());
             }
         }
     }

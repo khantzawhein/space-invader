@@ -15,7 +15,7 @@ import java.util.Iterator;
 public class EnemyShipManager {
     private ObservableList<Node> paneList;
     private boolean isMovingLeft, isMovingRight, shouldMoveLeft, shouldMoveRight;
-    private Logger logger = LogManager.getLogger(EnemyShipManager.class);
+    private static final Logger logger = LogManager.getLogger(EnemyShipManager.class);
     private boolean isBossMode = false;
     public final static int ORIGINAL_ENEMY_COUNT = 60;
 

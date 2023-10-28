@@ -24,29 +24,37 @@ public class MediaManager {
         playing = new HashMap<>();
         lastSoundPlayedTimes = new HashMap<>();
         try {
-            Sound bgSound = new Sound(Launcher.class.getResource("assets/sounds/space-invader.mp3").toURI().toString());
-            library.put(MediaIdentifier.BG_SOUND, bgSound);
-
-            Sound shootSound = new Sound(Objects.requireNonNull(Launcher.class.getResource("assets/sounds/shoot.wav").toURI().toString()));
-            library.put(MediaIdentifier.SHOOT_SOUND, shootSound);
-
-            Sound invaderKilled = new Sound(Objects.requireNonNull(Launcher.class.getResource("assets/sounds/invaderkilled.wav").toURI().toString()));
-            library.put(MediaIdentifier.INVADER_KILLED, invaderKilled);
-
-            Sound explosion = new Sound(Objects.requireNonNull(Launcher.class.getResource("assets/sounds/explosion.wav").toURI().toString()));
-            library.put(MediaIdentifier.EXPLOSION_SOUND, explosion);
-
-            Sound bossSound = new Sound(Objects.requireNonNull(Launcher.class.getResource("assets/sounds/ufo_highpitch.wav").toURI().toString()));
-            library.put(MediaIdentifier.BOSS_SOUND, bossSound);
-
-            Sound powerUpSound = new Sound(Objects.requireNonNull(Launcher.class.getResource("assets/sounds/power-up.wav").toURI().toString()));
-            library.put(MediaIdentifier.POWER_UP_SOUND, powerUpSound);
-
-            Sound winSound = new Sound(Objects.requireNonNull(Launcher.class.getResource("assets/sounds/win-sound.mp3").toURI().toString()));
-            library.put(MediaIdentifier.WIN_SOUND, winSound);
+            loadMedia();
         } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
+            throw new IllegalArgumentException(e);
         }
+    }
+
+
+    private void loadMedia() throws URISyntaxException {
+        Sound bgSound = new Sound(Objects.requireNonNull(Launcher.class.getResource("assets/sounds/space-invader.mp3")).toURI().toString());
+        library.put(MediaIdentifier.BG_SOUND, bgSound);
+
+        Sound shootSound = new Sound(Objects.requireNonNull(Objects.requireNonNull(Launcher.class.getResource("assets/sounds/shoot.wav")).toURI().toString()));
+        library.put(MediaIdentifier.SHOOT_SOUND, shootSound);
+
+        Sound invaderKilled = new Sound(Objects.requireNonNull(Objects.requireNonNull(Launcher.class.getResource("assets/sounds/invaderkilled.wav")).toURI().toString()));
+        library.put(MediaIdentifier.INVADER_KILLED, invaderKilled);
+
+        Sound explosion = new Sound(Objects.requireNonNull(Objects.requireNonNull(Launcher.class.getResource("assets/sounds/explosion.wav")).toURI().toString()));
+        library.put(MediaIdentifier.EXPLOSION_SOUND, explosion);
+
+        Sound bossSound = new Sound(Objects.requireNonNull(Objects.requireNonNull(Launcher.class.getResource("assets/sounds/ufo_highpitch.wav")).toURI().toString()));
+        library.put(MediaIdentifier.BOSS_SOUND, bossSound);
+
+        Sound powerUpSound = new Sound(Objects.requireNonNull(Objects.requireNonNull(Launcher.class.getResource("assets/sounds/power-up.wav")).toURI().toString()));
+        library.put(MediaIdentifier.POWER_UP_SOUND, powerUpSound);
+
+        Sound winSound = new Sound(Objects.requireNonNull(Objects.requireNonNull(Launcher.class.getResource("assets/sounds/win-sound.mp3")).toURI().toString()));
+        library.put(MediaIdentifier.WIN_SOUND, winSound);
+
+        Sound gameOverSound = new Sound(Objects.requireNonNull(Objects.requireNonNull(Launcher.class.getResource("assets/sounds/game-over.wav")).toURI().toString()));
+        library.put(MediaIdentifier.GAME_OVER_SOUND, gameOverSound);
     }
 
     public void play(MediaIdentifier name) {

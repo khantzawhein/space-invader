@@ -1,6 +1,7 @@
 package com.se233.spaceinvader.models;
 
 import com.se233.spaceinvader.Launcher;
+import com.se233.spaceinvader.enums.MediaIdentifier;
 import com.se233.spaceinvader.views.GamePane;
 import javafx.application.Platform;
 import javafx.scene.image.Image;
@@ -38,6 +39,7 @@ public class PlayerShip extends Pane {
         Platform.runLater(() -> Launcher.getGamePane().getLives().renderLive());
         if (Launcher.getGamePane().getLives().count() == 0) {
             Platform.runLater(this::setAsDead);
+            GamePane.MEDIA_MANAGER.play(MediaIdentifier.GAME_OVER_SOUND);
         }
         else {
             this.isReviving = true;

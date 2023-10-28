@@ -10,8 +10,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class EnemyShip extends Pane implements Comparable<EnemyShip> {
-
-    Logger logger = LogManager.getLogger(EnemyShip.class);
     private final SpriteSheetAnimator spriteSheetAnimator;
     private final EnemyShipManager enemyShipManager;
     private final EnemyLevel enemyLevel;

@@ -21,7 +21,7 @@ import java.util.ConcurrentModificationException;
 import java.util.stream.Collectors;
 
 public class DrawLoop implements Runnable {
-    private final Logger logger = LogManager.getLogger(DrawLoop.class);
+    private static final Logger logger = LogManager.getLogger(DrawLoop.class);
     private GamePane gamePane;
     private final int fps = 60;
     private boolean running = true;
@@ -216,10 +216,11 @@ public class DrawLoop implements Runnable {
                 float delay = 1000f / fps;
                 Thread.sleep((long) delay);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                logger.error("InterruptedException: " + e.getMessage());
             } catch (ConcurrentModificationException e) {
-                e.printStackTrace();
                 logger.warn("ConcurrentModificationException: " + e.getMessage());
+            } catch (Throwable e) {
+                logger.error("Error: {}, Message: {}", e.getClass().getName(), e.getMessage());
             }
         }
     }
