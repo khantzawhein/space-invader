@@ -14,7 +14,7 @@ import java.lang.reflect.Method;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class CharacterTesting {
+public class CharacterTest {
     private GamePane gamePane;
     private GameLoop gameLoop;
     private DrawLoop drawLoop;

@@ -4,7 +4,6 @@ import com.se233.spaceinvader.controllers.DrawLoop;
 import com.se233.spaceinvader.controllers.EnemyShipDrawLoop;
 import com.se233.spaceinvader.controllers.GameLoop;
 import com.se233.spaceinvader.views.GamePane;
-import javafx.application.Platform;
 import javafx.embed.swing.JFXPanel;
 import javafx.scene.input.KeyCode;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,7 +14,7 @@ import java.lang.reflect.Method;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class CharacterActionsTesting {
+public class CharacterActionsTest {
 
     private GamePane gamePane;
     private GameLoop gameLoop;
