@@ -5,20 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3e4e9b65-43d5-44ec-919e-af41fa8179d8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets/sounds/game-over.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/controllers/DrawLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/controllers/DrawLoop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/controllers/EnemyShipDrawLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/controllers/EnemyShipDrawLoop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/controllers/GameLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/controllers/GameLoop.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/EnemyShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/EnemyShip.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/PlayerShip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/PlayerShip.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/managers/EnemyShipManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/managers/EnemyShipManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/managers/MediaManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/managers/MediaManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/views/elements/SpriteSheetAnimator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/views/elements/SpriteSheetAnimator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets/sounds/invaderkilled.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets/sounds/invaderkilled.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets/sounds/power-up.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets/sounds/power-up.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets/sounds/shoot.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets/sounds/shoot.wav" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets/sounds/ufo_highpitch.wav" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/se233/spaceinvader/assets/sounds/ufo_highpitch.wav" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +27,9 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/22-ea+11/javafx-graphics-22-ea+11-sources.jar!/javafx/application/Application.java" root0="FORCE_HIGHLIGHTING" />
     <setting file="jar:///opt/homebrew/Cellar/openjdk/21/libexec/openjdk.jdk/Contents/Home/lib/src.zip!/java.base/java/lang/System.java" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
@@ -188,7 +179,7 @@
       <workItem from="1697388829236" duration="5828000" />
       <workItem from="1697477329253" duration="3017000" />
       <workItem from="1697898641609" duration="62399000" />
-      <workItem from="1698399646519" duration="15003000" />
+      <workItem from="1698399646519" duration="16195000" />
     </task>
     <servers />
   </component>
