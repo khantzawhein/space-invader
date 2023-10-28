@@ -1,6 +1,6 @@
 # Space Invaders
 ## Project II of SE 233 Advanced Programming
-![Space Invader Logo](./package/macos/spaceinvader-background.png)
+![Space Invader Logo](./package/macos/SpaceInvader-background.png)
 ### Introduction
 This is a project of SE 233, which is a game called Space Invaders. It is a JavaFX GUI application, and it is written in Java.
 
