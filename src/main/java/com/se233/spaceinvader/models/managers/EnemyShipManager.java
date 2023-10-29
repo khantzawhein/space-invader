@@ -17,7 +17,7 @@ public class EnemyShipManager {
     private boolean isMovingLeft, isMovingRight, shouldMoveLeft, shouldMoveRight;
     private static final Logger logger = LogManager.getLogger(EnemyShipManager.class);
     private boolean isBossMode = false;
-    public final static int ORIGINAL_ENEMY_COUNT = 60;
+    public final static int ORIGINAL_ENEMY_COUNT = 48;
 
     private ArrayList<EnemyShip> originalEnemyShips = new ArrayList<>();
 

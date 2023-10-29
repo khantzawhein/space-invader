@@ -1,5 +1,6 @@
 package com.se233.spaceinvader.controllers;
 
+import com.se233.spaceinvader.enums.MediaIdentifier;
 import com.se233.spaceinvader.models.managers.EnemyShipManager;
 import com.se233.spaceinvader.views.GamePane;
 import javafx.application.Platform;
@@ -12,7 +13,7 @@ public class EnemyShipDrawLoop implements Runnable {
     private static final Logger logger = LogManager.getLogger(EnemyShipDrawLoop.class);
     private final GamePane gamePane;
     private int fps = 8;
-    private final int baseFps = 8;
+    private final int baseFps = 11;
     private boolean running = true;
 
     public EnemyShipDrawLoop(GamePane gamePane) {
@@ -29,6 +30,7 @@ public class EnemyShipDrawLoop implements Runnable {
     private void checkCollisions() {
         gamePane.getEnemyShipManager().getEnemyShips().forEach(enemyShip -> {
             if (enemyShip.getLayoutY() + enemyShip.getHeight() >= gamePane.getDeadLine().getY()) {
+                GamePane.MEDIA_MANAGER.play(MediaIdentifier.GAME_OVER_SOUND);
                 Platform.runLater(() -> gamePane.getPlayer().setAsDead());
             }
         });

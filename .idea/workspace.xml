@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3e4e9b65-43d5-44ec-919e-af41fa8179d8" name="Changes" comment="" />
+    <list default="true" id="3e4e9b65-43d5-44ec-919e-af41fa8179d8" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/controllers/EnemyShipDrawLoop.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/controllers/EnemyShipDrawLoop.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/managers/EnemyShipManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/se233/spaceinvader/models/managers/EnemyShipManager.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -107,22 +111,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CharacterActionsTest.characterCanShootBullet" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="spaceinvader" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.se233.spaceinvader.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.se233.spaceinvader" />
-      <option name="MAIN_CLASS_NAME" value="com.se233.spaceinvader.CharacterActionsTest" />
-      <option name="METHOD_NAME" value="characterCanShootBullet" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="CharacterActionsTest.playerScoreShouldIncreaseWhenEnemyHasBeenKilled" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="spaceinvader" />
       <extension name="coverage">
@@ -135,6 +123,21 @@
       <option name="MAIN_CLASS_NAME" value="com.se233.spaceinvader.CharacterActionsTest" />
       <option name="METHOD_NAME" value="playerScoreShouldIncreaseWhenEnemyHasBeenKilled" />
       <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CharacterTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="spaceinvader" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.se233.spaceinvader.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.se233.spaceinvader" />
+      <option name="MAIN_CLASS_NAME" value="com.se233.spaceinvader.CharacterTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -156,11 +159,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.CharacterActionsTesting" />
+        <item itemvalue="JUnit.CharacterTest" />
         <item itemvalue="JUnit.JUnitTestSuite" />
         <item itemvalue="JUnit.CharacterActionsTest.characterCanShootAndHitEnemyShip" />
-        <item itemvalue="JUnit.CharacterActionsTesting" />
         <item itemvalue="JUnit.CharacterActionsTest.playerScoreShouldIncreaseWhenEnemyHasBeenKilled" />
-        <item itemvalue="JUnit.CharacterActionsTest.characterCanShootBullet" />
       </list>
     </recent_temporary>
   </component>
@@ -177,7 +180,7 @@
       <workItem from="1697388829236" duration="5828000" />
       <workItem from="1697477329253" duration="3017000" />
       <workItem from="1697898641609" duration="62399000" />
-      <workItem from="1698399646519" duration="17045000" />
+      <workItem from="1698399646519" duration="19290000" />
     </task>
     <servers />
   </component>
